@@ -25,13 +25,13 @@ export default function About() {
         <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-forest-700 text-white">
           <Compass className="h-6 w-6" />
         </span>
-        <h1 className="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">About Wandermap</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">О проекте</h1>
       </div>
 
       <p className="mt-6 text-lg leading-relaxed text-stone-600">
-        Wandermap is a collaborative travel guide for people who'd rather walk a city than scroll it.
-        It blends the trail-planning feel of a hiking app with the storytelling of a guided walking
-        tour — every stop on the map comes with its history, its character, and a reason to detour.
+        Это интерактивный путеводитель для тех, кто любит гулять по городу, а не листать его.
+        Он объединяет планирование маршрута с историями о местах: у каждой точки на карте есть
+        описание, характер и причина свернуть с прямого пути.
       </p>
 
       <div className="mt-10 grid gap-4 sm:grid-cols-3">

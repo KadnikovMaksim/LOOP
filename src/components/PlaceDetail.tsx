@@ -50,7 +50,7 @@ export default function PlaceDetail({ place, onClose, onAddToRoute, inRoute }: P
             {place.is_user_submitted && (
               <span className="inline-flex items-center gap-1.5 rounded-full bg-forest-100 px-3 py-1 text-xs font-semibold text-forest-800">
                 <Camera className="h-3.5 w-3.5" />
-                Community submission
+                От сообщества
               </span>
             )}
           </div>
@@ -91,7 +91,7 @@ export default function PlaceDetail({ place, onClose, onAddToRoute, inRoute }: P
             }`}
           >
             <Navigation className="h-4 w-4" />
-            {inRoute ? 'Added to route' : 'Add to my route'}
+            {inRoute ? 'Уже в маршруте' : 'Добавить в маршрут'}
           </button>
         </div>
       </div>

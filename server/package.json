@@ -1,5 +1,5 @@
 {
-  "name": "wandermap-backend",
+  "name": "backend",
   "version": "1.0.0",
   "description": "Self-hosted backend for Wandermap (Express + SQLite)",
   "main": "server.js",

@@ -1,4 +1,4 @@
-# Wandermap — Collaborative Travel Guide (Full-Stack)
+# Интерактивный путеводитель (Full-Stack)
 
 Полноценное приложение «бэкенд + фронтенд»:
 - **Бэкенд:** Node.js + Express + SQLite (`server/`)

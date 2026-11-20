@@ -174,13 +174,15 @@ export default function Home() {
   const routeEnd = routePlaces[routePlaces.length - 1];
 
   const pickForRoute = useCallback(
-    (start: Place, end: Place, pool: Place[]) => {
+    (start: Place, end: Place, pool: Place[], extraCap = Number.POSITIVE_INFINITY) => {
       const direct = straightLineDistance(start, end);
       // Don't cram a stop every 100 m: roughly one stop per 350 m of the direct line.
       const densityCap = Math.max(2, Math.min(10, Math.round(direct / 350)));
+      const cap = Math.min(densityCap, extraCap);
+      if (cap < 1) return [];
       return pickStopsAlongRoute(pool, start, end, {
         weights,
-        maxStops: densityCap,
+        maxStops: cap,
         maxDetourMeters: corridor,
         maxExtraPerStopMeters: extraPerStop,
         maxDurationMinutes: minutes,
@@ -201,19 +203,34 @@ export default function Home() {
       return;
     }
 
-    const picked = pickForRoute(routeStart, routeEnd, places);
+    const directSeconds = estimateWalkingSeconds(routeStart, [], routeEnd);
+    const budgetSeconds = minutes * 60;
+
+    // If even the direct walk is longer than the chosen time, never force detours.
+    if (directSeconds > budgetSeconds) {
+      setRouteIds([routeStart.id, routeEnd.id]);
+      setNotice(
+        `Дорога A→B сама занимает ~${formatMinutes(directSeconds)}, это больше ${minutes} мин. ` +
+          'Остановки не добавляю — увеличьте время или сократите маршрут.',
+      );
+      return;
+    }
+
+    // Roughly 12 minutes per stop including the walk to it.
+    const timeCap = Math.floor((budgetSeconds - directSeconds) / (12 * 60));
+    const picked = timeCap > 0 ? pickForRoute(routeStart, routeEnd, places, timeCap) : [];
+
     if (picked.length === 0) {
       setRouteIds([routeStart.id, routeEnd.id]);
       setNotice(
-        `Дорога A→B сама занимает ~${formatMinutes(
-          estimateWalkingSeconds(routeStart, [], routeEnd),
-        )}. Увеличьте время или радиус, чтобы добавить остановки.`,
+        `Маршрут A→B занимает ~${formatMinutes(directSeconds)}. ` +
+          'Для остановок нужно больше времени или другой радиус.',
       );
       return;
     }
     setRouteIds([routeStart.id, ...picked.map((p) => p.id), routeEnd.id]);
     setNotice(null);
-  }, [routeStart, routeEnd, weights, pickForRoute, places]);
+  }, [routeStart, routeEnd, weights, minutes, places, pickForRoute]);
 
   /**
    * Starts guided navigation from the user's current position to point B.
@@ -390,7 +407,7 @@ export default function Home() {
             <input
               type="range"
               min={15}
-              max={180}
+              max={240}
               step={5}
               value={minutes}
               onChange={(e) => setMinutes(Number(e.target.value))}
@@ -401,7 +418,7 @@ export default function Home() {
               <span>
                 {estimate ? `сейчас ≈ ${formatMinutes(estimate)}` : 'поставьте A и B'}
               </span>
-              <span>3 ч</span>
+              <span>4 ч</span>
             </div>
           </div>
 

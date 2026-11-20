@@ -2,8 +2,8 @@ import { NavLink, Outlet, Link } from 'react-router-dom';
 import { Compass, Map, PlusCircle, Info } from 'lucide-react';
 
 const navItems = [
-  { to: '/', label: 'Map', icon: Map, end: true },
-  { to: '/about', label: 'About', icon: Info, end: false },
+  { to: '/', label: 'Карта', icon: Map, end: true },
+  { to: '/about', label: 'О проекте', icon: Info, end: false },
 ];
 
 export default function Layout() {
@@ -11,11 +11,10 @@ export default function Layout() {
     <div className="flex min-h-screen flex-col bg-offwhite">
       <header className="sticky top-0 z-[1200] h-16 border-b border-stone-200/70 bg-offwhite/90 backdrop-blur">
         <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6">
-          <Link to="/" className="flex items-center gap-2.5">
+          <Link to="/" className="flex items-center gap-2.5" aria-label="На главную">
             <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-forest-700 text-white">
               <Compass className="h-5 w-5" />
             </span>
-            <span className="text-lg font-bold tracking-tight text-stone-900">Wandermap</span>
           </Link>
 
           <nav className="flex items-center gap-1 sm:gap-2">
@@ -47,8 +46,8 @@ export default function Layout() {
               }
             >
               <PlusCircle className="h-4 w-4" />
-              <span className="hidden sm:inline">Submit a place</span>
-              <span className="sm:hidden">Add</span>
+              <span className="hidden sm:inline">Добавить место</span>
+              <span className="sm:hidden">Добавить</span>
             </NavLink>
           </nav>
         </div>

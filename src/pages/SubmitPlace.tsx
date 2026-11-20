@@ -65,7 +65,7 @@ export default function SubmitPlace() {
     e.preventDefault();
     setError(null);
     if (lat === null || lng === null) {
-      setError('Please set a location: upload a photo with GPS data, drop a pin on the mini-map, or type coordinates.');
+      setError('Укажите местоположение: загрузите фото с GPS, поставьте точку на мини-карте или введите координаты.');
       return;
     }
     setSubmitting(true);
@@ -80,7 +80,7 @@ export default function SubmitPlace() {
       });
       navigate('/', { state: { focusPlaceId: place.id } });
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Something went wrong saving your place.');
+      setError(err instanceof Error ? err.message : 'Не удалось сохранить место.');
     } finally {
       setSubmitting(false);
     }
@@ -89,16 +89,16 @@ export default function SubmitPlace() {
   return (
     <div className="mx-auto w-full max-w-2xl px-4 py-8 sm:px-6 sm:py-12">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight text-stone-900">Submit a place</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-stone-900">Добавить место</h1>
         <p className="mt-2 text-stone-600">
-          Know a spot worth sharing? Add it to the community map so other explorers can find it.
+          Знаете место, которым стоит поделиться? Добавьте его на карту, чтобы его нашли другие.
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6 rounded-3xl bg-white p-6 shadow-card sm:p-8">
         <div>
           <label htmlFor="title" className="mb-1.5 block text-sm font-semibold text-stone-800">
-            Title
+            Название
           </label>
           <input
             id="title"
@@ -106,14 +106,14 @@ export default function SubmitPlace() {
             onChange={(e) => setTitle(e.target.value)}
             required
             maxLength={120}
-            placeholder="e.g. Secret Courtyard on Karmelitská"
+            placeholder="Например: Тайный дворик на Соборной"
             className="w-full rounded-xl border border-stone-200 px-4 py-2.5 text-stone-900 placeholder-stone-400 outline-none transition focus:border-forest-500 focus:ring-2 focus:ring-forest-100"
           />
         </div>
 
         <div>
           <label htmlFor="description" className="mb-1.5 block text-sm font-semibold text-stone-800">
-            Description <span className="font-normal text-stone-500">— its history, or why it's special</span>
+            Описание <span className="font-normal text-stone-500">— история или чем место особенно</span>
           </label>
           <textarea
             id="description"
@@ -122,14 +122,14 @@ export default function SubmitPlace() {
             required
             rows={5}
             maxLength={2000}
-            placeholder="Tell the story behind this place…"
+            placeholder="Расскажите историю этого места…"
             className="w-full resize-y rounded-xl border border-stone-200 px-4 py-2.5 text-stone-900 placeholder-stone-400 outline-none transition focus:border-forest-500 focus:ring-2 focus:ring-forest-100"
           />
         </div>
 
         <div>
           <label htmlFor="category" className="mb-1.5 block text-sm font-semibold text-stone-800">
-            Category
+            Категория
           </label>
           <select
             id="category"
@@ -146,7 +146,7 @@ export default function SubmitPlace() {
         </div>
 
         <div>
-          <span className="mb-1.5 block text-sm font-semibold text-stone-800">Photo</span>
+          <span className="mb-1.5 block text-sm font-semibold text-stone-800">Фото</span>
           <button
             type="button"
             onClick={() => fileRef.current?.click()}
@@ -157,9 +157,9 @@ export default function SubmitPlace() {
             ) : (
               <>
                 <Upload className="h-7 w-7" />
-                <span className="text-sm font-medium">Upload a photo of the place</span>
+                <span className="text-sm font-medium">Загрузите фото места</span>
                 <span className="text-xs text-stone-400">
-                  We'll read GPS coordinates from the photo automatically if available
+                  Координаты попробуем определить из GPS-данных фотографии
                 </span>
               </>
             )}
@@ -174,26 +174,26 @@ export default function SubmitPlace() {
         </div>
 
         <div>
-          <span className="mb-1.5 block text-sm font-semibold text-stone-800">Location</span>
+          <span className="mb-1.5 block text-sm font-semibold text-stone-800">Местоположение</span>
           {exifStatus === 'checking' && (
             <p className="mb-3 flex items-center gap-2 rounded-xl bg-stone-50 px-4 py-3 text-sm text-stone-600">
-              <Loader2 className="h-4 w-4 animate-spin" /> Looking for GPS data in your photo…
+              <Loader2 className="h-4 w-4 animate-spin" /> Ищу GPS-данные в фотографии…
             </p>
           )}
           {exifStatus === 'found' && (
             <p className="mb-3 flex items-center gap-2 rounded-xl bg-forest-50 px-4 py-3 text-sm text-forest-800">
-              <CheckCircle2 className="h-4 w-4" /> Location found from your photo's GPS data
+              <CheckCircle2 className="h-4 w-4" /> Координаты найдены в GPS-данных фото
             </p>
           )}
           {exifStatus === 'missing' && (
             <p className="mb-3 flex items-center gap-2 rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-900">
-              <AlertCircle className="h-4 w-4 shrink-0" /> No GPS data in this photo — drop a pin on the map
-              below or type coordinates (lat, lng)
+              <AlertCircle className="h-4 w-4 shrink-0" /> В фото нет GPS-данных — поставьте точку на карте
+              ниже или введите координаты (широта, долгота)
             </p>
           )}
           {exifStatus === 'idle' && (
             <p className="mb-3 flex items-center gap-2 rounded-xl bg-stone-50 px-4 py-3 text-sm text-stone-500">
-              <ImageIcon className="h-4 w-4" /> Add a photo with location info, or set the spot manually below
+              <ImageIcon className="h-4 w-4" /> Добавьте фото с геоданными или укажите место вручную ниже
             </p>
           )}
           <MiniMapPicker
@@ -209,7 +209,7 @@ export default function SubmitPlace() {
             type="text"
             value={manualCoords}
             onChange={(e) => handleManualCoords(e.target.value)}
-            placeholder="Or paste coordinates: 50.0875, 14.4214"
+            placeholder="Или вставьте координаты: 51.5336, 46.0343"
             className="mt-3 w-full rounded-xl border border-stone-200 px-4 py-2.5 text-sm text-stone-900 placeholder-stone-400 outline-none transition focus:border-forest-500 focus:ring-2 focus:ring-forest-100"
           />
         </div>
@@ -227,11 +227,11 @@ export default function SubmitPlace() {
         >
           {submitting ? (
             <>
-              <Loader2 className="h-4 w-4 animate-spin" /> Saving…
+              <Loader2 className="h-4 w-4 animate-spin" /> Сохраняю…
             </>
           ) : (
             <>
-              <MapPin className="h-4 w-4" /> Add to the map
+              <MapPin className="h-4 w-4" /> Добавить на карту
             </>
           )}
         </button>

@@ -340,6 +340,7 @@ export default function MapView({
 }: MapViewProps) {
   const [route, setRoute] = useState<RouteResult | null>(null);
   const [routeLoading, setRouteLoading] = useState(false);
+  const [routeError, setRouteError] = useState<string | null>(null);
   const [fitAllTrigger, setFitAllTrigger] = useState(0);
   const [navOpen, setNavOpen] = useState(false);
   const [moving, setMoving] = useState(false);
@@ -358,15 +359,17 @@ export default function MapView({
   useEffect(() => {
     if (routePoints.length < 2) {
       setRoute(null);
+      setRouteError(null);
       return;
     }
     let cancelled = false;
     setRouteLoading(true);
+    setRouteError(null);
     fetchRoute(routePoints).then((result) => {
-      if (!cancelled) {
-        setRoute(result);
-        setRouteLoading(false);
-      }
+      if (cancelled) return;
+      setRoute(result);
+      setRouteError(result ? null : 'Не удалось построить пешеходный маршрут между этими точками.');
+      setRouteLoading(false);
     });
     return () => {
       cancelled = true;
@@ -514,12 +517,6 @@ export default function MapView({
             positions={route.coordinates}
             pathOptions={{ color: '#2d5a3d', weight: 4, opacity: 0.85, dashArray: undefined }}
           />
-        ) : routePlaces.length >= 2 ? (
-          <Polyline
-            key="route-dashed"
-            positions={routePlaces.map((p) => [p.lat, p.lng] as [number, number])}
-            pathOptions={{ color: '#2d5a3d', weight: 3, opacity: 0.6, dashArray: '6 8' }}
-          />
         ) : null}
 
         {a && <Marker position={[a.lat, a.lng]} icon={endpointIcon('A')} />}
@@ -652,7 +649,7 @@ export default function MapView({
         </div>
       )}
 
-      {routePlaces.length >= 1 && !navigating && (
+      {routePlaces.length >= 1 && route && !navigating && (
         <button
           onClick={onStartNavigation}
           disabled={startingNavigation}
@@ -749,8 +746,10 @@ export default function MapView({
               </ol>
             )}
 
-            {!route && !routeLoading && (
-              <p className="mt-1 text-[11px] text-stone-400">Оценка по прямой</p>
+            {routeError && !routeLoading && (
+              <p className="mt-2 rounded-lg bg-amber-50 px-2.5 py-2 text-[11px] leading-snug text-amber-800">
+                {routeError} Попробуйте уменьшить число остановок или выбрать точки ближе друг к другу.
+              </p>
             )}
           </div>
         </div>

@@ -127,7 +127,7 @@ export function pickStopsAlongRoute(
   // 4) Drop stops that add too much walking or exceed the time budget.
   //    This is what prevents zig-zag routes and keeps the walk within the chosen time.
   const WALK_SPEED_MS = (4.5 * 1000) / 3600;
-  const STREET_FACTOR = 1.3;
+  const STREET_FACTOR = 1.5;
   const budgetSeconds = maxDurationMinutes ? maxDurationMinutes * 60 : Number.POSITIVE_INFINITY;
 
   let totalSeconds = (distance(a, b) * STREET_FACTOR) / WALK_SPEED_MS;
@@ -204,7 +204,7 @@ export function estimateWalkingSeconds(
   stops: { lat: number; lng: number }[],
   b: { lat: number; lng: number },
   speedKmh = 4.5,
-  streetFactor = 1.3,
+  streetFactor = 1.5,
 ): number {
   let metres = 0;
   let previous = a;
