@@ -1,0 +1,6 @@
+[out:json][timeout:120];
+(
+  nwr["tourism"="viewpoint"](51.47,45.85,51.62,46.20);
+  nwr["tourism"~"^(museum|gallery)$"](51.47,45.85,51.62,46.20);
+);
+out center tags;

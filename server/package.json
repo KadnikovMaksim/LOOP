@@ -1,0 +1,20 @@
+{
+  "name": "wandermap-backend",
+  "version": "1.0.0",
+  "description": "Self-hosted backend for Wandermap (Express + SQLite)",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "fetch-osm": "node fetch-osm.js",
+    "pbf-to-raw": "node pbf-to-raw.js",
+    "import": "node import.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "osm-pbf-parser": "^2.3.0"
+  }
+}

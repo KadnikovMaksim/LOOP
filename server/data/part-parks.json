@@ -1,0 +1,1802 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-11-20T19:15:50Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 6300892753,
+  "lat": 51.5563186,
+  "lon": 46.0666811,
+  "tags": {
+    "leisure": "garden",
+    "name": "Саратовский лимонарий"
+  }
+},
+{
+  "type": "way",
+  "id": 30926469,
+  "center": {
+    "lat": 51.5284707,
+    "lon": 46.0361305
+  },
+  "tags": {
+    "barrier": "fence",
+    "leisure": "park",
+    "name": "Липки",
+    "name:ru": "Липки",
+    "wikidata": "Q4345235",
+    "wikipedia": "ru:Парк Липки"
+  }
+},
+{
+  "type": "way",
+  "id": 31141236,
+  "center": {
+    "lat": 51.5307840,
+    "lon": 46.0480641
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Первой Учительницы"
+  }
+},
+{
+  "type": "way",
+  "id": 50111630,
+  "center": {
+    "lat": 51.5024806,
+    "lon": 46.1234499
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Городской парк \"Покровский\""
+  }
+},
+{
+  "type": "way",
+  "id": 50116266,
+  "center": {
+    "lat": 51.4991860,
+    "lon": 46.1270386
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Детский парк"
+  }
+},
+{
+  "type": "way",
+  "id": 50278311,
+  "center": {
+    "lat": 51.5011815,
+    "lon": 46.1228643
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 78360754,
+  "center": {
+    "lat": 51.5986464,
+    "lon": 45.9277690
+  },
+  "tags": {
+    "leisure": "garden"
+  }
+},
+{
+  "type": "way",
+  "id": 86972240,
+  "center": {
+    "lat": 51.5231544,
+    "lon": 45.9919569
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Сквер железнодорожников",
+    "note": "границу забора не видел целиком"
+  }
+},
+{
+  "type": "way",
+  "id": 103443462,
+  "center": {
+    "lat": 51.4962046,
+    "lon": 46.1140721
+  },
+  "tags": {
+    "leisure": "park",
+    "natural": "heath"
+  }
+},
+{
+  "type": "way",
+  "id": 108072253,
+  "center": {
+    "lat": 51.4725248,
+    "lon": 46.1564957
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 109355131,
+  "center": {
+    "lat": 51.5023959,
+    "lon": 45.9430969
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Сквер Авиастроителей"
+  }
+},
+{
+  "type": "way",
+  "id": 121845826,
+  "center": {
+    "lat": 51.5323854,
+    "lon": 46.0344364
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Сад имени Радищева"
+  }
+},
+{
+  "type": "way",
+  "id": 129117395,
+  "center": {
+    "lat": 51.4935798,
+    "lon": 46.1686143
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 138296756,
+  "center": {
+    "lat": 51.5005903,
+    "lon": 46.1253036
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 140409258,
+  "center": {
+    "lat": 51.4885791,
+    "lon": 46.1463097
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Городской стадион"
+  }
+},
+{
+  "type": "way",
+  "id": 165510475,
+  "center": {
+    "lat": 51.5269870,
+    "lon": 46.0380270
+  },
+  "tags": {
+    "fixme": "отметить по забору и детализировать",
+    "leisure": "park",
+    "name": "Cквер имени В. В. Маяковского"
+  }
+},
+{
+  "type": "way",
+  "id": 165512293,
+  "center": {
+    "lat": 51.5939595,
+    "lon": 45.9702006
+  },
+  "tags": {
+    "barrier": "wall",
+    "height": "2 m",
+    "leisure": "park",
+    "material": "metal",
+    "name": "Территория детства"
+  }
+},
+{
+  "type": "way",
+  "id": 165512296,
+  "center": {
+    "lat": 51.5714677,
+    "lon": 45.9985164
+  },
+  "tags": {
+    "area:ha": "0.55",
+    "description": "Природный экологический сад",
+    "leisure": "park",
+    "name": "Сквер имени Н.М. Тулайкова",
+    "start_date": "2013-05"
+  }
+},
+{
+  "type": "way",
+  "id": 188495931,
+  "center": {
+    "lat": 51.5020852,
+    "lon": 45.9519324
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 190555696,
+  "center": {
+    "lat": 51.5016727,
+    "lon": 45.9518156
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 191049254,
+  "center": {
+    "lat": 51.5031438,
+    "lon": 45.9482721
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Сквер Дружбы народов"
+  }
+},
+{
+  "type": "way",
+  "id": 195047935,
+  "center": {
+    "lat": 51.5562896,
+    "lon": 46.0670178
+  },
+  "tags": {
+    "building": "greenhouse",
+    "contact:mobile": "+7 (903) 328-37-95",
+    "contact:phone": "+7 (8452) 53-37-95",
+    "contact:website": "https://лимонарий.рф/",
+    "leisure": "garden",
+    "name": "Саратовский лимонарий"
+  }
+},
+{
+  "type": "way",
+  "id": 199165559,
+  "center": {
+    "lat": 51.4818413,
+    "lon": 46.1293192
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 225197369,
+  "center": {
+    "lat": 51.4802746,
+    "lon": 46.1589571
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 225200224,
+  "center": {
+    "lat": 51.4720964,
+    "lon": 46.1477103
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 225206824,
+  "center": {
+    "lat": 51.4787395,
+    "lon": 46.1539044
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 226042028,
+  "center": {
+    "lat": 51.4768078,
+    "lon": 46.1312620
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 226044234,
+  "center": {
+    "lat": 51.4834627,
+    "lon": 46.1316549
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "площадь Ф. Энгельса"
+  }
+},
+{
+  "type": "way",
+  "id": 226058944,
+  "center": {
+    "lat": 51.4798349,
+    "lon": 46.1616142
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 226209610,
+  "center": {
+    "lat": 51.4716844,
+    "lon": 46.1451048
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 226252759,
+  "center": {
+    "lat": 51.4979448,
+    "lon": 46.0748643
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 227093541,
+  "center": {
+    "lat": 51.4730124,
+    "lon": 46.1468213
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 227095014,
+  "center": {
+    "lat": 51.4828879,
+    "lon": 46.1343521
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 227096357,
+  "center": {
+    "lat": 51.4809372,
+    "lon": 46.1278372
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 227455520,
+  "center": {
+    "lat": 51.5033033,
+    "lon": 46.1178732
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Парк на набережной"
+  }
+},
+{
+  "type": "way",
+  "id": 236234624,
+  "center": {
+    "lat": 51.4964671,
+    "lon": 46.1243833
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 241578470,
+  "center": {
+    "lat": 51.5503665,
+    "lon": 46.0803935
+  },
+  "tags": {
+    "access": "private",
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 242905708,
+  "center": {
+    "lat": 51.5801833,
+    "lon": 45.9684987
+  },
+  "tags": {
+    "leisure": "park",
+    "note": "условный парк на 3й, рядом с Россией"
+  }
+},
+{
+  "type": "way",
+  "id": 243092172,
+  "center": {
+    "lat": 51.5284597,
+    "lon": 46.0556961
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Парк Троицкого собора"
+  }
+},
+{
+  "type": "way",
+  "id": 309593452,
+  "center": {
+    "lat": 51.5970039,
+    "lon": 45.9065299
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Сквер им. К.В. Благодарова",
+    "source": "http://www.saratovmer.ru/news/2012/10/01/25011.html",
+    "start_date": "2012-10-12"
+  }
+},
+{
+  "type": "way",
+  "id": 309870777,
+  "center": {
+    "lat": 51.5001157,
+    "lon": 45.9411431
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 309870975,
+  "center": {
+    "lat": 51.4996601,
+    "lon": 45.9417121
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 309870978,
+  "center": {
+    "lat": 51.4995736,
+    "lon": 45.9392846
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 309871513,
+  "center": {
+    "lat": 51.4810618,
+    "lon": 45.9296105
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 309897395,
+  "center": {
+    "lat": 51.5008741,
+    "lon": 45.9566168
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 310234974,
+  "center": {
+    "lat": 51.5249917,
+    "lon": 46.0389749
+  },
+  "tags": {
+    "fixme": "детализировать, уточнить границу",
+    "leisure": "park",
+    "name": "Сквер имени Бабушкина"
+  }
+},
+{
+  "type": "way",
+  "id": 312109306,
+  "center": {
+    "lat": 51.6113742,
+    "lon": 45.9707591
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Cквер cтроителей",
+    "source": "http://www.saratovmer.ru/news/2014/10/17/34090.html",
+    "start_date": "2014-10-17"
+  }
+},
+{
+  "type": "way",
+  "id": 333059720,
+  "center": {
+    "lat": 51.6079341,
+    "lon": 45.9748623
+  },
+  "tags": {
+    "barrier": "fence",
+    "leisure": "park",
+    "name": "Сквер имени В.И. Чемодурова",
+    "start_date": "2012"
+  }
+},
+{
+  "type": "way",
+  "id": 333061632,
+  "center": {
+    "lat": 51.5988498,
+    "lon": 45.9212809
+  },
+  "tags": {
+    "area:ha": "0.5",
+    "leisure": "park",
+    "name": "Уголок семейного отдыха",
+    "start_date": "2013-05",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 339726341,
+  "center": {
+    "lat": 51.5205563,
+    "lon": 46.0082596
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 341629568,
+  "center": {
+    "lat": 51.5793066,
+    "lon": 45.9692220
+  },
+  "tags": {
+    "fixme": "остатки парка, детализировать",
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 428719702,
+  "center": {
+    "lat": 51.6009737,
+    "lon": 45.9589076
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 428896526,
+  "center": {
+    "lat": 51.5951210,
+    "lon": 45.9671450
+  },
+  "tags": {
+    "leisure": "park",
+    "natural": "wood"
+  }
+},
+{
+  "type": "way",
+  "id": 495818846,
+  "center": {
+    "lat": 51.5502150,
+    "lon": 46.0077405
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Сквер им. Вавилова"
+  }
+},
+{
+  "type": "way",
+  "id": 524658527,
+  "center": {
+    "lat": 51.5328836,
+    "lon": 45.9819330
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 526438951,
+  "center": {
+    "lat": 51.5293454,
+    "lon": 45.9786230
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 526694209,
+  "center": {
+    "lat": 51.5569606,
+    "lon": 46.0377336
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 527013194,
+  "center": {
+    "lat": 51.5403951,
+    "lon": 46.0400932
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 684740605,
+  "center": {
+    "lat": 51.6068434,
+    "lon": 46.0132018
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 685568859,
+  "center": {
+    "lat": 51.6066464,
+    "lon": 46.0196337
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 685568860,
+  "center": {
+    "lat": 51.6064373,
+    "lon": 46.0260526
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 697553069,
+  "center": {
+    "lat": 51.5969544,
+    "lon": 45.9209343
+  },
+  "tags": {
+    "access": "yes",
+    "fee": "no",
+    "leisure": "garden"
+  }
+},
+{
+  "type": "way",
+  "id": 723075723,
+  "center": {
+    "lat": 51.5283422,
+    "lon": 46.0285212
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 901943319,
+  "center": {
+    "lat": 51.5045208,
+    "lon": 45.9464718
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 917793962,
+  "center": {
+    "lat": 51.4842807,
+    "lon": 46.1570476
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 947435488,
+  "center": {
+    "lat": 51.5656163,
+    "lon": 46.0229069
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 947435489,
+  "center": {
+    "lat": 51.5658088,
+    "lon": 46.0221169
+  },
+  "tags": {
+    "barrier": "fence",
+    "fence_type": "metal",
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 1106829576,
+  "center": {
+    "lat": 51.4833080,
+    "lon": 46.1345449
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Сквер \"Первой учительнице\""
+  }
+},
+{
+  "type": "way",
+  "id": 1118885511,
+  "center": {
+    "lat": 51.5953235,
+    "lon": 45.9211478
+  },
+  "tags": {
+    "access": "yes",
+    "fee": "no",
+    "garden:type": "community",
+    "leisure": "garden"
+  }
+},
+{
+  "type": "way",
+  "id": 1118885525,
+  "center": {
+    "lat": 51.5969441,
+    "lon": 45.9204642
+  },
+  "tags": {
+    "access": "yes",
+    "fee": "no",
+    "leisure": "garden"
+  }
+},
+{
+  "type": "way",
+  "id": 1118885527,
+  "center": {
+    "lat": 51.5969098,
+    "lon": 45.9201492
+  },
+  "tags": {
+    "access": "yes",
+    "fee": "no",
+    "leisure": "garden"
+  }
+},
+{
+  "type": "way",
+  "id": 1118885528,
+  "center": {
+    "lat": 51.5967826,
+    "lon": 45.9204399
+  },
+  "tags": {
+    "access": "yes",
+    "fee": "no",
+    "leisure": "garden"
+  }
+},
+{
+  "type": "way",
+  "id": 1118885529,
+  "center": {
+    "lat": 51.5968120,
+    "lon": 45.9208692
+  },
+  "tags": {
+    "access": "yes",
+    "fee": "no",
+    "leisure": "garden"
+  }
+},
+{
+  "type": "way",
+  "id": 1118885530,
+  "center": {
+    "lat": 51.5968107,
+    "lon": 45.9213101
+  },
+  "tags": {
+    "access": "yes",
+    "fee": "no",
+    "leisure": "garden"
+  }
+},
+{
+  "type": "way",
+  "id": 1118885531,
+  "center": {
+    "lat": 51.5966741,
+    "lon": 45.9217013
+  },
+  "tags": {
+    "access": "yes",
+    "fee": "no",
+    "leisure": "garden"
+  }
+},
+{
+  "type": "way",
+  "id": 1118885532,
+  "center": {
+    "lat": 51.5965002,
+    "lon": 45.9219691
+  },
+  "tags": {
+    "access": "yes",
+    "fee": "no",
+    "leisure": "garden"
+  }
+},
+{
+  "type": "way",
+  "id": 1118885533,
+  "center": {
+    "lat": 51.5963775,
+    "lon": 45.9220011
+  },
+  "tags": {
+    "access": "yes",
+    "fee": "no",
+    "leisure": "garden"
+  }
+},
+{
+  "type": "way",
+  "id": 1126436350,
+  "center": {
+    "lat": 51.5286704,
+    "lon": 45.9864315
+  },
+  "tags": {
+    "garden:type": "community",
+    "leisure": "garden"
+  }
+},
+{
+  "type": "way",
+  "id": 1150627436,
+  "center": {
+    "lat": 51.4791721,
+    "lon": 46.1602103
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Экопарк"
+  }
+},
+{
+  "type": "way",
+  "id": 1346580201,
+  "center": {
+    "lat": 51.4717634,
+    "lon": 46.1629428
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 1388937088,
+  "center": {
+    "lat": 51.5025939,
+    "lon": 46.1196769
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 1475381549,
+  "center": {
+    "lat": 51.4945067,
+    "lon": 45.9503081
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "сквер Саратовского авиационного завода"
+  }
+},
+{
+  "type": "way",
+  "id": 1475599416,
+  "center": {
+    "lat": 51.5008360,
+    "lon": 45.9537603
+  },
+  "tags": {
+    "leisure": "park"
+  }
+},
+{
+  "type": "way",
+  "id": 1523485947,
+  "center": {
+    "lat": 51.5284365,
+    "lon": 46.0127354
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Сквер",
+    "opening_hours": "24/7"
+  }
+},
+{
+  "type": "relation",
+  "id": 3274474,
+  "center": {
+    "lat": 51.5817261,
+    "lon": 45.9681713
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Сквер Петра и Павла",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 3744947,
+  "center": {
+    "lat": 51.5393876,
+    "lon": 46.0115773
+  },
+  "tags": {
+    "leisure": "park",
+    "note": "условный парк на севере Астраханской",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 3788598,
+  "center": {
+    "lat": 51.6069564,
+    "lon": 45.9798957
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Сквер Победы",
+    "renovation:date": "2010",
+    "start_date": "1976",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 3879729,
+  "center": {
+    "lat": 51.5185529,
+    "lon": 45.9996618
+  },
+  "tags": {
+    "leisure": "park",
+    "loc_name": "горпарк",
+    "name": "Городской парк культуры и отдыха имени Максима Горького",
+    "short_name": "Городской парк",
+    "type": "multipolygon",
+    "wikidata": "Q4408450",
+    "wikipedia": "ru:Саратовский ГПКиО имени М. Горького"
+  }
+},
+{
+  "type": "relation",
+  "id": 3889792,
+  "center": {
+    "lat": 51.5425337,
+    "lon": 46.0608679
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Парк Победы",
+    "name:de": "Siegespark",
+    "name:en": "Victory Park",
+    "start_date": "1975",
+    "type": "multipolygon",
+    "wikidata": "Q4345253",
+    "wikipedia": "ru:Парк Победы (Саратов)"
+  }
+},
+{
+  "type": "relation",
+  "id": 4155222,
+  "center": {
+    "lat": 51.6055784,
+    "lon": 46.1711894
+  },
+  "tags": {
+    "fixme": "детализировать",
+    "leisure": "park",
+    "note": "не отмечены пешеходные дорожки и фонтаны",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 4668149,
+  "center": {
+    "lat": 51.5477541,
+    "lon": 46.0109064
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Парк Танкистов",
+    "note": "условный парк Танкистов",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 4668150,
+  "center": {
+    "lat": 51.5228252,
+    "lon": 45.9991409
+  },
+  "tags": {
+    "leisure": "park",
+    "note": "условный парк на 2й садовой",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 4668151,
+  "center": {
+    "lat": 51.5673788,
+    "lon": 45.9857705
+  },
+  "tags": {
+    "description": "сквер 50 лет Октября",
+    "leisure": "park",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 4668152,
+  "center": {
+    "lat": 51.5339402,
+    "lon": 46.0134923
+  },
+  "tags": {
+    "leisure": "park",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 4668153,
+  "center": {
+    "lat": 51.5275928,
+    "lon": 45.9988771
+  },
+  "tags": {
+    "leisure": "park",
+    "note": "условный парк на юге Астраханской",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 4677274,
+  "center": {
+    "lat": 51.5982585,
+    "lon": 45.9628206
+  },
+  "tags": {
+    "fixme": "детализировать",
+    "leisure": "park",
+    "name": "Сквер имени Ломоносова",
+    "renovation:date": "2013-05",
+    "subject:wikidata": "Q58720",
+    "subject:wikipedia": "ru:Ломоносов, Михаил Васильевич",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 4684329,
+  "center": {
+    "lat": 51.5301726,
+    "lon": 46.0580336
+  },
+  "tags": {
+    "leisure": "park",
+    "note": "можно подобрать более подходящие границы",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 6095089,
+  "center": {
+    "lat": 51.5318467,
+    "lon": 46.0074181
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Детский парк",
+    "note": "часы работы вроде с 6 до 22",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 6289890,
+  "center": {
+    "lat": 51.5300606,
+    "lon": 46.0130495
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Аллея кадетов",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 9404782,
+  "center": {
+    "lat": 51.5394534,
+    "lon": 46.0439044
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Сквер Героев Краснодона",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 9627611,
+  "center": {
+    "lat": 51.5409162,
+    "lon": 46.0353929
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Покровская площадь",
+    "source": "Bing",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 9959239,
+  "center": {
+    "lat": 51.5336920,
+    "lon": 46.0192049
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "сквер Братьев Никитиных",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 10285020,
+  "center": {
+    "lat": 51.5336860,
+    "lon": 46.0027298
+  },
+  "tags": {
+    "dog": "no",
+    "leisure": "park",
+    "name": "сквер им. О.И. Янковского",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 10669583,
+  "center": {
+    "lat": 51.5192904,
+    "lon": 46.0116037
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Роща памяти",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 10732623,
+  "center": {
+    "lat": 51.5186316,
+    "lon": 46.0061126
+  },
+  "tags": {
+    "leisure": "park",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 10732624,
+  "center": {
+    "lat": 51.5201802,
+    "lon": 46.0043254
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Сквер борцов революции 1905 года.",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 10917726,
+  "center": {
+    "lat": 51.5107014,
+    "lon": 45.9900918
+  },
+  "tags": {
+    "leisure": "park",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 10959087,
+  "center": {
+    "lat": 51.5166350,
+    "lon": 46.0153617
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "сквер при памятнике погибшим в Великую Отечественную войну \"Вечная слава павшим за Родину\"",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 11039897,
+  "center": {
+    "lat": 51.5351138,
+    "lon": 45.9857191
+  },
+  "tags": {
+    "leisure": "park",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 11046996,
+  "center": {
+    "lat": 51.5358035,
+    "lon": 45.9812043
+  },
+  "tags": {
+    "amenity": "college",
+    "leisure": "garden",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 11053144,
+  "center": {
+    "lat": 51.5387061,
+    "lon": 45.9779486
+  },
+  "tags": {
+    "leisure": "park",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 11053909,
+  "center": {
+    "lat": 51.5408329,
+    "lon": 45.9698472
+  },
+  "tags": {
+    "leisure": "park",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 11742805,
+  "center": {
+    "lat": 51.5922786,
+    "lon": 45.9110867
+  },
+  "tags": {
+    "leisure": "park",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 11834731,
+  "center": {
+    "lat": 51.5624270,
+    "lon": 45.9938295
+  },
+  "tags": {
+    "fixme": "детализировать",
+    "leisure": "park",
+    "note": "были установлены новые ограждения и южную часть сделали парком, а северную - детской площадкой",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 11941976,
+  "center": {
+    "lat": 51.5095610,
+    "lon": 45.9811072
+  },
+  "tags": {
+    "leisure": "park",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 11968452,
+  "center": {
+    "lat": 51.5040141,
+    "lon": 45.9629519
+  },
+  "tags": {
+    "leisure": "park",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 12251549,
+  "center": {
+    "lat": 51.5049941,
+    "lon": 45.9483077
+  },
+  "tags": {
+    "leisure": "park",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 12257491,
+  "center": {
+    "lat": 51.5011813,
+    "lon": 45.9505988
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Сквер им. Ленина В.И.",
+    "opening_hours": "24/7",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 12274651,
+  "center": {
+    "lat": 51.5033775,
+    "lon": 45.9553913
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Сквер имени Кривохижина А.И.",
+    "name:ru": "Сквер имени Кривохижина А.И.",
+    "opening_hours": "24/7",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 12337294,
+  "center": {
+    "lat": 51.4926596,
+    "lon": 45.9314828
+  },
+  "tags": {
+    "leisure": "park",
+    "loc_name": "Пономарева",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 12396708,
+  "center": {
+    "lat": 51.4912113,
+    "lon": 45.9397937
+  },
+  "tags": {
+    "leisure": "park",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 12430047,
+  "center": {
+    "lat": 51.4937526,
+    "lon": 45.9231472
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Сквер имени Марины Расковой",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 12666779,
+  "center": {
+    "lat": 51.4794653,
+    "lon": 45.9293370
+  },
+  "tags": {
+    "leisure": "park",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 12666780,
+  "center": {
+    "lat": 51.4834498,
+    "lon": 45.9295597
+  },
+  "tags": {
+    "leisure": "park",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 12666831,
+  "center": {
+    "lat": 51.4884782,
+    "lon": 45.9295598
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "сквер имени Калинина",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 12670124,
+  "center": {
+    "lat": 51.4766566,
+    "lon": 45.9239898
+  },
+  "tags": {
+    "leisure": "park",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 12695545,
+  "center": {
+    "lat": 51.4719828,
+    "lon": 45.9120358
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Сквер ДК Химик",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 12808752,
+  "center": {
+    "lat": 51.5630042,
+    "lon": 46.0257819
+  },
+  "tags": {
+    "leisure": "park",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 12814677,
+  "center": {
+    "lat": 51.4784671,
+    "lon": 45.8926094
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Парк имени Ю.Гагарина",
+    "natural": "wood",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 13127602,
+  "center": {
+    "lat": 51.5651436,
+    "lon": 46.0282241
+  },
+  "tags": {
+    "leisure": "park",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 13739916,
+  "center": {
+    "lat": 51.5120104,
+    "lon": 45.9590059
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Пролетарский сквер",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 14767599,
+  "center": {
+    "lat": 51.5208502,
+    "lon": 46.0150077
+  },
+  "tags": {
+    "leisure": "park",
+    "natural": "wood",
+    "type": "multipolygon",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "relation",
+  "id": 14894907,
+  "center": {
+    "lat": 51.5020410,
+    "lon": 45.9437135
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Аллея каштанов",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 14911545,
+  "center": {
+    "lat": 51.5762606,
+    "lon": 46.0781461
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Изумрудный",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 17140186,
+  "center": {
+    "lat": 51.5787608,
+    "lon": 46.0304581
+  },
+  "tags": {
+    "leisure": "park",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 17221686,
+  "center": {
+    "lat": 51.5337465,
+    "lon": 46.0327399
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "сквер имени художника Боголюбова",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 17324141,
+  "center": {
+    "lat": 51.5269773,
+    "lon": 46.0549417
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Сквер Петра Первого",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 17436519,
+  "center": {
+    "lat": 51.5788264,
+    "lon": 46.0605010
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Парк Свободы",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 18043310,
+  "center": {
+    "lat": 51.6123762,
+    "lon": 46.0021272
+  },
+  "tags": {
+    "area:ha": "7",
+    "leisure": "park",
+    "name": "Солнечный",
+    "renovation:date": "2011",
+    "start_date": "1992",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 19802624,
+  "center": {
+    "lat": 51.5737807,
+    "lon": 45.9783164
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Аллея героев-пограничников",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 19840670,
+  "center": {
+    "lat": 51.5988768,
+    "lon": 46.0197554
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "Семхоз",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 21165834,
+  "center": {
+    "lat": 51.5624011,
+    "lon": 46.0079633
+  },
+  "tags": {
+    "leisure": "park",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 21222204,
+  "center": {
+    "lat": 51.5751966,
+    "lon": 45.9737319
+  },
+  "tags": {
+    "contact:max": "https://max.ru/join/7Kjxc4ltGdi6G7ZsrKi-6QeAKENAvLaZvnZDFtRe6FM",
+    "contact:telegram": "https://t.me/taugallery_saratov",
+    "contact:vk": "https://vk.com/taugallery",
+    "fee": "yes",
+    "leisure": "park",
+    "name": "Тау Парк",
+    "opening_hours": "Mo-Su 9:00-20:00",
+    "phone": "+7 8452 983493",
+    "type": "multipolygon",
+    "website": "https://taupark.ru/"
+  }
+}
+
+  ]
+}

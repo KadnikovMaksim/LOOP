@@ -1,0 +1,1977 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-11-20T19:15:50Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 360882188,
+  "lat": 51.5297870,
+  "lon": 46.0352534,
+  "tags": {
+    "historic": "memorial",
+    "inscription": "Николай Гаврилович Чернышевский 1828-1889",
+    "material": "metal",
+    "memorial": "statue",
+    "name": "Н. Г. Чернышевскому",
+    "wikidata": "Q4343405",
+    "wikipedia": "ru:Памятник Чернышевскому (Саратов, площадь Чернышевского)"
+  }
+},
+{
+  "type": "node",
+  "id": 361226243,
+  "lat": 51.5414160,
+  "lon": 45.9996506,
+  "tags": {
+    "historic": "memorial",
+    "inscription": "Дзержинский Феликс Эдмундович народный комиссар путей сообщения 1921-1924 гг.",
+    "memorial": "statue",
+    "memorial:person": "ru:Дзержинский, Феликс Эдмундович",
+    "name": "Ф. Э. Дзержинскому",
+    "wikidata": "Q4343152",
+    "wikipedia": "ru:Памятник Дзержинскому (Саратов)"
+  }
+},
+{
+  "type": "node",
+  "id": 361228732,
+  "lat": 51.5254266,
+  "lon": 46.0470173,
+  "tags": {
+    "historic": "memorial",
+    "material": "stone",
+    "memorial": "sculpture",
+    "name": "К. А. Федину",
+    "name:ru": "К. А. Федину",
+    "subject": "Федин, Константин Александрович",
+    "subject:wikidata": "Q704015",
+    "subject:wikipedia": "ru:Федин, Константин Александрович"
+  }
+},
+{
+  "type": "node",
+  "id": 361228733,
+  "lat": 51.5337048,
+  "lon": 46.0343882,
+  "tags": {
+    "artist_name": "Александр Павлович Кибальников",
+    "height": "9",
+    "historic": "memorial",
+    "inscription": "Ленин",
+    "memorial": "statue",
+    "memorial:person": "ru:Ленин, Владимир Ильич",
+    "name": "В. И. Ленину",
+    "start_date": "1970-04-17",
+    "wikipedia": "ru:Памятник Ленину (Саратов)"
+  }
+},
+{
+  "type": "node",
+  "id": 611612707,
+  "lat": 51.4855174,
+  "lon": 46.1268147,
+  "tags": {
+    "description": "Символ города",
+    "historic": "memorial",
+    "inscription": "Покровск 1747 Энгельс",
+    "name": "Бык-солевоз",
+    "start_date": "2003-06-12"
+  }
+},
+{
+  "type": "node",
+  "id": 634339636,
+  "lat": 51.5035334,
+  "lon": 46.1260503,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "war_memorial",
+    "name": "Героям фронта и тыла 1941-1945"
+  }
+},
+{
+  "type": "node",
+  "id": 854494478,
+  "lat": 51.5442575,
+  "lon": 46.0496842,
+  "tags": {
+    "artist:wikidata": "Q21106988",
+    "artist:wikipedia": "ru:Менякин, Юрий Иванович",
+    "description": "Памятник погибшим во Второй мировой войне саратовцам",
+    "height": "40 m",
+    "historic": "monument",
+    "material": "reinforced_concrete;metal",
+    "name": "Журавли",
+    "start_date": "1982",
+    "tourism": "attraction",
+    "wikidata": "Q4181711",
+    "wikipedia": "ru:Журавли (памятник)"
+  }
+},
+{
+  "type": "node",
+  "id": 919804911,
+  "lat": 51.5986379,
+  "lon": 45.9277391,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "war_memorial",
+    "name": "Воину-строителю"
+  }
+},
+{
+  "type": "node",
+  "id": 925646493,
+  "lat": 51.5258384,
+  "lon": 46.0518665,
+  "tags": {
+    "historic": "memorial",
+    "material": "bronze",
+    "memorial": "statue",
+    "memorial:person": "ru:Гагарин, Юрий Алексеевич",
+    "name": "Ю. А. Гагарину",
+    "start_date": "1995-10-05"
+  }
+},
+{
+  "type": "node",
+  "id": 1012863805,
+  "lat": 51.5201297,
+  "lon": 46.0043720,
+  "tags": {
+    "historic": "memorial",
+    "inscription": "Борцам революции Пролетарии всех стран, соединяйтесь!",
+    "memorial": "statue",
+    "name": "Борцам революции",
+    "start_date": "1925"
+  }
+},
+{
+  "type": "node",
+  "id": 1060453580,
+  "lat": 51.5201684,
+  "lon": 46.0015145,
+  "tags": {
+    "artist_name": "Владимир Степанов",
+    "historic": "memorial",
+    "inscription": "Алексей Давыдовыч Панчулидзев 1762—1832 г. Основатель городского парка. Саратовский губернатор (1808—1826 г.)",
+    "memorial": "bust",
+    "memorial:person": "ru:Панчулидзев, Алексей Давыдович",
+    "name": "А. Д. Панчулидзеву",
+    "start_date": "2000-06-16",
+    "wikipedia": "ru:Панчулидзев, Алексей Давыдович#Память"
+  }
+},
+{
+  "type": "node",
+  "id": 1072877711,
+  "lat": 51.4910339,
+  "lon": 45.8575441,
+  "tags": {
+    "description": "Памятник водителям, участвовавших в ВОВ",
+    "historic": "memorial",
+    "memorial": "war_memorial"
+  }
+},
+{
+  "type": "node",
+  "id": 1072877975,
+  "lat": 51.4937053,
+  "lon": 45.9210972,
+  "tags": {
+    "historic": "memorial"
+  }
+},
+{
+  "type": "node",
+  "id": 1075073100,
+  "lat": 51.5007123,
+  "lon": 45.9510955,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "statue",
+    "name": "Памятник Ленину",
+    "subject:wikidata": "Q1394",
+    "subject:wikipedia": "ru:Ленин, Владимир Ильич"
+  }
+},
+{
+  "type": "node",
+  "id": 1076637928,
+  "lat": 51.5085486,
+  "lon": 45.9820425,
+  "tags": {
+    "historic": "memorial",
+    "name": "Зенитка"
+  }
+},
+{
+  "type": "node",
+  "id": 1165759058,
+  "lat": 51.5386576,
+  "lon": 46.0095763,
+  "tags": {
+    "historic": "memorial",
+    "name": "Н. Г. Чернышевскому"
+  }
+},
+{
+  "type": "node",
+  "id": 1165760052,
+  "lat": 51.5383052,
+  "lon": 46.0072044,
+  "tags": {
+    "historic": "memorial",
+    "name": "В. И. Разумовскому"
+  }
+},
+{
+  "type": "node",
+  "id": 1207100780,
+  "lat": 51.5887183,
+  "lon": 45.9359968,
+  "tags": {
+    "historic": "memorial",
+    "name": "Зое Анатольевне Космодемьянской",
+    "subject:wikidata": "Q229062",
+    "subject:wikipedia": "ru:Космодемьянская, Зоя Анатольевна"
+  }
+},
+{
+  "type": "node",
+  "id": 1214525287,
+  "lat": 51.5386836,
+  "lon": 46.0078819,
+  "tags": {
+    "historic": "memorial"
+  }
+},
+{
+  "type": "node",
+  "id": 1241680626,
+  "lat": 51.4719333,
+  "lon": 46.1479280,
+  "tags": {
+    "addr:postcode": "413100",
+    "historic": "memorial",
+    "name": "Героям Чернобыля"
+  }
+},
+{
+  "type": "node",
+  "id": 1291465088,
+  "lat": 51.5005166,
+  "lon": 46.1252738,
+  "tags": {
+    "historic": "memorial",
+    "name": "Владимир Ильич"
+  }
+},
+{
+  "type": "node",
+  "id": 1347763832,
+  "lat": 51.4817973,
+  "lon": 46.1293585,
+  "tags": {
+    "historic": "memorial",
+    "name": "Участникам войны в Афганистане"
+  }
+},
+{
+  "type": "node",
+  "id": 1496306104,
+  "lat": 51.4831206,
+  "lon": 46.1316892,
+  "tags": {
+    "historic": "monument",
+    "name": "Фридриху Энгельсу"
+  }
+},
+{
+  "type": "node",
+  "id": 1622221412,
+  "lat": 51.4812459,
+  "lon": 46.1577090,
+  "tags": {
+    "historic": "memorial",
+    "name": "В.И. Ленин"
+  }
+},
+{
+  "type": "node",
+  "id": 1622221418,
+  "lat": 51.4803670,
+  "lon": 46.1596185,
+  "tags": {
+    "historic": "memorial",
+    "name": "Марине Расковой"
+  }
+},
+{
+  "type": "node",
+  "id": 1622221427,
+  "lat": 51.4801153,
+  "lon": 46.1607972,
+  "tags": {
+    "historic": "memorial",
+    "name": "Погибшим товарищам"
+  }
+},
+{
+  "type": "node",
+  "id": 1622269929,
+  "lat": 51.5029346,
+  "lon": 45.9455409,
+  "tags": {
+    "description": "самолёт ЯК-3",
+    "historic": "memorial",
+    "memorial": "war_memorial",
+    "name": "Героям фронта и тыла"
+  }
+},
+{
+  "type": "node",
+  "id": 1638702951,
+  "lat": 51.5586945,
+  "lon": 46.0221372,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "war_memorial",
+    "name": "Танк"
+  }
+},
+{
+  "type": "node",
+  "id": 2133352052,
+  "lat": 51.4989758,
+  "lon": 46.1254440,
+  "tags": {
+    "historic": "memorial",
+    "name": "Крупская и пионеры - герои"
+  }
+},
+{
+  "type": "node",
+  "id": 2264551877,
+  "lat": 51.4817379,
+  "lon": 45.8863389,
+  "tags": {
+    "historic": "memorial"
+  }
+},
+{
+  "type": "node",
+  "id": 2340186865,
+  "lat": 51.4789087,
+  "lon": 46.1538760,
+  "tags": {
+    "historic": "memorial",
+    "name": "1941-1945"
+  }
+},
+{
+  "type": "node",
+  "id": 2342966234,
+  "lat": 51.5040178,
+  "lon": 46.1215846,
+  "tags": {
+    "historic": "memorial",
+    "material": "concrete",
+    "memorial": "war_memorial"
+  }
+},
+{
+  "type": "node",
+  "id": 2343121770,
+  "lat": 51.4964871,
+  "lon": 46.1241614,
+  "tags": {
+    "addr:postcode": "413100",
+    "historic": "memorial",
+    "name": "Льву Кассилю"
+  }
+},
+{
+  "type": "node",
+  "id": 2344242675,
+  "lat": 51.4855814,
+  "lon": 46.1568130,
+  "tags": {
+    "historic": "memorial",
+    "name": "Мелиорация"
+  }
+},
+{
+  "type": "node",
+  "id": 2349167280,
+  "lat": 51.4820599,
+  "lon": 46.1359862,
+  "tags": {
+    "historic": "memorial",
+    "name": "148-й Черниговской дивизии"
+  }
+},
+{
+  "type": "node",
+  "id": 2350735108,
+  "lat": 51.4742268,
+  "lon": 46.1619141,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "vehicle",
+    "name": "Самолет Ту-22"
+  }
+},
+{
+  "type": "node",
+  "id": 2358606044,
+  "lat": 51.5041127,
+  "lon": 46.1178866,
+  "tags": {
+    "historic": "memorial",
+    "name": "М.И. Калинину"
+  }
+},
+{
+  "type": "node",
+  "id": 2359831898,
+  "lat": 51.5029391,
+  "lon": 46.0797765,
+  "tags": {
+    "historic": "memorial",
+    "inscription:ru": "Энгельс 1747"
+  }
+},
+{
+  "type": "node",
+  "id": 2360277413,
+  "lat": 51.4961812,
+  "lon": 46.1140641,
+  "tags": {
+    "addr:postcode": "413100",
+    "historic": "memorial",
+    "material": "metal",
+    "memorial": "sculpture",
+    "name": "Герою, отвоевавшему для нас право жить"
+  }
+},
+{
+  "type": "node",
+  "id": 2505751146,
+  "lat": 51.5331432,
+  "lon": 46.0179887,
+  "tags": {
+    "historic": "memorial",
+    "inscription": "Вавилов Николай Иванович",
+    "material": "concrete",
+    "memorial": "statue",
+    "name": "Н. И. Вавилову",
+    "wikidata": "Q214926",
+    "wikipedia": "ru:Вавилов, Николай Иванович"
+  }
+},
+{
+  "type": "node",
+  "id": 2847296661,
+  "lat": 51.5786767,
+  "lon": 45.9484739,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "war_memorial",
+    "note": "список воинов отсеченный в мраморе"
+  }
+},
+{
+  "type": "node",
+  "id": 2847296662,
+  "lat": 51.5786810,
+  "lon": 45.9485410,
+  "tags": {
+    "height": "3 m",
+    "historic": "memorial",
+    "inscription:hu": "itt magyar hadifoglyok nyugszanak a ii vilaghaboru aldozatai",
+    "inscription:ru": "Здесь покоятся венгерские военопленные жертвы второй мировой войны",
+    "memorial": "war_memorial",
+    "note": "Крест с надписью"
+  }
+},
+{
+  "type": "node",
+  "id": 2847296663,
+  "lat": 51.5786959,
+  "lon": 45.9484880,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "war_memorial",
+    "note": "список воинов отсеченный в мраморе"
+  }
+},
+{
+  "type": "node",
+  "id": 2847296666,
+  "lat": 51.5787730,
+  "lon": 45.9486126,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "war_memorial",
+    "note": "список воинов отсеченный в мраморе"
+  }
+},
+{
+  "type": "node",
+  "id": 2847296667,
+  "lat": 51.5787732,
+  "lon": 45.9486262,
+  "tags": {
+    "height": "2 m",
+    "historic": "memorial",
+    "memorial": "war_memorial",
+    "note": "крест с табличкой перед ним"
+  }
+},
+{
+  "type": "node",
+  "id": 2853061294,
+  "lat": 51.5803657,
+  "lon": 45.9689077,
+  "tags": {
+    "historic": "memorial",
+    "name": "В. И. Ленину"
+  }
+},
+{
+  "type": "node",
+  "id": 2893226106,
+  "lat": 51.6067483,
+  "lon": 45.9794699,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "war_memorial",
+    "name": "Героям Великой Отечественной войны 1941-1945 гг. и труженикам тыла",
+    "source": "http://www.saratovmer.ru/news/2010/10/04/18818.html",
+    "start_date": "2010-10-02"
+  }
+},
+{
+  "type": "node",
+  "id": 2893226177,
+  "lat": 51.6078594,
+  "lon": 45.9785294,
+  "tags": {
+    "historic": "memorial"
+  }
+},
+{
+  "type": "node",
+  "id": 2984749788,
+  "lat": 51.5284367,
+  "lon": 46.0555465,
+  "tags": {
+    "historic": "memorial",
+    "source": "Bing"
+  }
+},
+{
+  "type": "node",
+  "id": 2985430971,
+  "lat": 51.5383408,
+  "lon": 45.9913138,
+  "tags": {
+    "historic": "memorial",
+    "inscription": "улица имени Д. В. Емлютина",
+    "memorial": "war_memorial"
+  }
+},
+{
+  "type": "node",
+  "id": 2985479082,
+  "lat": 51.5320610,
+  "lon": 46.0358223,
+  "tags": {
+    "artist:wikidata": "Q3094071",
+    "artist:wikipedia": "ru:Кибальников, Александр Павлович",
+    "artist_name": "Александр Павлович Кибальников",
+    "heritage": "4",
+    "historic": "memorial",
+    "inscription": "Александр Николаевич РАДИЩЕВ 1749—1802",
+    "material": "granite;marble",
+    "memorial": "bust",
+    "memorial:person": "ru:Радищев Александр Николаевич",
+    "name": "А. Н. Радищеву",
+    "ref": "641711312010005",
+    "start_date": "1975",
+    "wikidata": "Q108063199",
+    "wikipedia": "ru:Бюст А. Н. Радищева"
+  }
+},
+{
+  "type": "node",
+  "id": 3036394264,
+  "lat": 51.5448203,
+  "lon": 46.0517716,
+  "tags": {
+    "fixme": "местоположение примерное",
+    "historic": "memorial",
+    "memorial": "bust",
+    "name": "А. П. Шилин",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 3036394265,
+  "lat": 51.5447351,
+  "lon": 46.0514585,
+  "tags": {
+    "fixme": "местоположение примерное",
+    "historic": "memorial",
+    "memorial": "bust",
+    "name": "А.П. Шилин",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 3036394266,
+  "lat": 51.5447802,
+  "lon": 46.0516247,
+  "tags": {
+    "fixme": "местоположение примерное",
+    "historic": "memorial",
+    "memorial": "bust",
+    "name": "Н.М. Скоморохов",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 3036543782,
+  "lat": 51.5428728,
+  "lon": 46.0573872,
+  "tags": {
+    "description": "Памятник погибшим при ядерных катастрофах",
+    "historic": "memorial",
+    "name": "Защитившим от атома",
+    "note": "контур примерный",
+    "start_date": "2011-12-27"
+  }
+},
+{
+  "type": "node",
+  "id": 3036543788,
+  "lat": 51.5430865,
+  "lon": 46.0592179,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "war_memorial",
+    "name": "Землякам, погибшим в локальных войнах",
+    "start_date": "2009-11-03"
+  }
+},
+{
+  "type": "node",
+  "id": 3036543789,
+  "lat": 51.5430197,
+  "lon": 46.0555250,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "war_memorial",
+    "name": "Малолетним узникам фашизма",
+    "start_date": "2003-06-22"
+  }
+},
+{
+  "type": "node",
+  "id": 3036543790,
+  "lat": 51.5429970,
+  "lon": 46.0578332,
+  "tags": {
+    "description": "Памятник погибшим при ядерных катастрофах",
+    "fixme": "местоположение примерное",
+    "historic": "memorial",
+    "name": "Пожарным и спасателям",
+    "note": "контур примерный",
+    "start_date": "2014-04-30"
+  }
+},
+{
+  "type": "node",
+  "id": 3036574511,
+  "lat": 51.5424353,
+  "lon": 46.0602049,
+  "tags": {
+    "fixme": "местоположение примерное",
+    "historic": "memorial",
+    "memorial": "bust",
+    "name": "Александр Невский",
+    "tourism": "attraction"
+  }
+},
+{
+  "type": "node",
+  "id": 3036574512,
+  "lat": 51.5424537,
+  "lon": 46.0601785,
+  "tags": {
+    "fixme": "местоположение примерное",
+    "historic": "memorial",
+    "memorial": "bust",
+    "name": "Дмитрий Донской",
+    "tourism": "attraction"
+  }
+},
+{
+  "type": "node",
+  "id": 3036574513,
+  "lat": 51.5425117,
+  "lon": 46.0600743,
+  "tags": {
+    "fixme": "местоположение примерное",
+    "historic": "memorial",
+    "memorial": "bust",
+    "name": "Кутузов М. И.",
+    "tourism": "attraction"
+  }
+},
+{
+  "type": "node",
+  "id": 3036574514,
+  "lat": 51.5425242,
+  "lon": 46.0600556,
+  "tags": {
+    "fixme": "местоположение примерное",
+    "historic": "memorial",
+    "memorial": "bust",
+    "name": "Нахимов П. С.",
+    "tourism": "attraction"
+  }
+},
+{
+  "type": "node",
+  "id": 3036574515,
+  "lat": 51.5424701,
+  "lon": 46.0601520,
+  "tags": {
+    "fixme": "местоположение примерное",
+    "historic": "memorial",
+    "memorial": "bust",
+    "name": "Пётр I",
+    "tourism": "attraction"
+  }
+},
+{
+  "type": "node",
+  "id": 3036574516,
+  "lat": 51.5424981,
+  "lon": 46.0601007,
+  "tags": {
+    "fixme": "местоположение примерное",
+    "historic": "memorial",
+    "memorial": "bust",
+    "name": "Суворов А. В.",
+    "tourism": "attraction"
+  }
+},
+{
+  "type": "node",
+  "id": 3036574517,
+  "lat": 51.5424846,
+  "lon": 46.0601256,
+  "tags": {
+    "fixme": "местоположение примерное",
+    "historic": "memorial",
+    "memorial": "bust",
+    "name": "Ушаков Ф. Ф.",
+    "tourism": "attraction"
+  }
+},
+{
+  "type": "node",
+  "id": 3066129832,
+  "lat": 51.6148027,
+  "lon": 45.9717254,
+  "tags": {
+    "historic": "memorial",
+    "inscription": "Ленинский район",
+    "inscription:ru": "наши дела",
+    "memorial": "stele",
+    "name": "Ленинский район"
+  }
+},
+{
+  "type": "node",
+  "id": 3095750648,
+  "lat": 51.5951320,
+  "lon": 45.9675917,
+  "tags": {
+    "historic": "memorial"
+  }
+},
+{
+  "type": "node",
+  "id": 3096663680,
+  "lat": 51.5979757,
+  "lon": 45.9627473,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "stele",
+    "war_memorial": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 3127734061,
+  "lat": 51.5285426,
+  "lon": 46.0319561,
+  "tags": {
+    "description": "у входа в Саратовский государственный профессионально-педагогический колледж имени Ю. А. Гагарина",
+    "fixme": "уточнить местоположение",
+    "historic": "memorial",
+    "inscription": "В этом здании в 1951-1955 годах учился Ю.А.Гагарин",
+    "memorial": "bust",
+    "memorial:person": "ru:Гагарин, Юрий Алексеевич"
+  }
+},
+{
+  "type": "node",
+  "id": 3220236385,
+  "lat": 51.5309290,
+  "lon": 46.0476293,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "sculpture",
+    "name": "Первой учительнице",
+    "note": "уточнить местоположение",
+    "wikidata": "Q4343550",
+    "wikipedia": "ru:Памятник первой учительнице (Саратов)"
+  }
+},
+{
+  "type": "node",
+  "id": 3443550049,
+  "lat": 51.5940763,
+  "lon": 45.9706371,
+  "tags": {
+    "historic": "memorial"
+  }
+},
+{
+  "type": "node",
+  "id": 3523582641,
+  "lat": 51.5977964,
+  "lon": 45.9710894,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "war_memorial"
+  }
+},
+{
+  "type": "node",
+  "id": 3642708029,
+  "lat": 51.5348470,
+  "lon": 46.0088767,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "bust",
+    "name": "Н. Н. Семёнову"
+  }
+},
+{
+  "type": "node",
+  "id": 3666901748,
+  "lat": 51.5262948,
+  "lon": 46.0463614,
+  "tags": {
+    "description": "В 1844 году он на свои сбережения построил первый в Саратове деревянный водопровод.",
+    "description2": "Василию Васильевичу Гришину",
+    "historic": "memorial",
+    "material": "metal",
+    "memorial": "statue",
+    "name": "Городовому",
+    "note": "https://www.youtube.com/watch?v=8NSVcVLhVNU",
+    "note_2": "https://web.archive.org/web/20150729064414/http://www.vzsar.ru/news/2015/05/19/prototipom-pamyatnika-gorodovomy-stal-sozdatel-pervogo-vodoprovoda-v-saratove.html",
+    "start_date": "2015-06-12"
+  }
+},
+{
+  "type": "node",
+  "id": 3693688434,
+  "lat": 51.5632280,
+  "lon": 46.0254345,
+  "tags": {
+    "historic": "memorial"
+  }
+},
+{
+  "type": "node",
+  "id": 3693688470,
+  "lat": 51.5633742,
+  "lon": 46.0250461,
+  "tags": {
+    "historic": "memorial"
+  }
+},
+{
+  "type": "node",
+  "id": 3736687486,
+  "lat": 51.5325326,
+  "lon": 46.0322826,
+  "tags": {
+    "artwork_type": "statue",
+    "description": "фигуры Олега Савина и Кота Матроскина",
+    "historic": "memorial",
+    "material": "metal",
+    "memorial": "statue",
+    "name": "Олегу Табакову",
+    "note": "http://louiserger.livejournal.com/54918.html",
+    "start_date": "2015-08-29",
+    "tourism": "artwork"
+  }
+},
+{
+  "type": "node",
+  "id": 3793716040,
+  "lat": 51.5334494,
+  "lon": 46.0150646,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "bust",
+    "name": "Н. В. Цицину"
+  }
+},
+{
+  "type": "node",
+  "id": 4020910879,
+  "lat": 51.5307989,
+  "lon": 46.0133811,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "war_memorial",
+    "name": "Аллея кадетов"
+  }
+},
+{
+  "type": "node",
+  "id": 4025083719,
+  "lat": 51.5356484,
+  "lon": 46.0086170,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "bust",
+    "name": "Яблочкову",
+    "note": "уточнить название как на табличке"
+  }
+},
+{
+  "type": "node",
+  "id": 4039101530,
+  "lat": 51.5654164,
+  "lon": 46.0237587,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "stele",
+    "name": "М.М.Расковой"
+  }
+},
+{
+  "type": "node",
+  "id": 4039101531,
+  "lat": 51.5669317,
+  "lon": 46.0252746,
+  "tags": {
+    "description": "Иьич",
+    "historic": "memorial",
+    "memorial": "statue",
+    "name": "Ленину В.И."
+  }
+},
+{
+  "type": "node",
+  "id": 4227775090,
+  "lat": 51.5339651,
+  "lon": 46.0029926,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "statue",
+    "name": "Олегу Янковскому",
+    "note": "https://www.youtube.com/watch?v=6Ux3XNa5y4g",
+    "sculptor": "Щербаков Андрей А."
+  }
+},
+{
+  "type": "node",
+  "id": 4256749434,
+  "lat": 51.5280173,
+  "lon": 46.0343057,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "bust",
+    "memorial:person": "ru: Пушкин, Александр Сергеевич"
+  }
+},
+{
+  "type": "node",
+  "id": 4256789444,
+  "lat": 51.5270834,
+  "lon": 46.0354905,
+  "tags": {
+    "historic": "memorial",
+    "material": "metal",
+    "memorial": "sculpture",
+    "name": "Брандмейстер города"
+  }
+},
+{
+  "type": "node",
+  "id": 4293927030,
+  "lat": 51.5295924,
+  "lon": 46.0112516,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "war_memorial"
+  }
+},
+{
+  "type": "node",
+  "id": 4377462851,
+  "lat": 51.5347036,
+  "lon": 46.0329632,
+  "tags": {
+    "historic": "memorial",
+    "name": "Сердце губернии"
+  }
+},
+{
+  "type": "node",
+  "id": 4519067115,
+  "lat": 51.5325924,
+  "lon": 46.0335484,
+  "tags": {
+    "historic": "memorial"
+  }
+},
+{
+  "type": "node",
+  "id": 4587496714,
+  "lat": 51.4782132,
+  "lon": 45.8924806,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "bust",
+    "name": "Ю. А. Гагарину"
+  }
+},
+{
+  "type": "node",
+  "id": 4709537389,
+  "lat": 51.5395174,
+  "lon": 46.0643723,
+  "tags": {
+    "historic": "memorial",
+    "name": "Пограничникам",
+    "name:en": "Monument to border guard sevicemen",
+    "name:ru": "Пограничникам"
+  }
+},
+{
+  "type": "node",
+  "id": 4797134097,
+  "lat": 51.6009738,
+  "lon": 45.9588689,
+  "tags": {
+    "historic": "memorial",
+    "name": "М. В. Ломоносову"
+  }
+},
+{
+  "type": "node",
+  "id": 4964513621,
+  "lat": 51.5375060,
+  "lon": 46.0174735,
+  "tags": {
+    "historic": "memorial",
+    "inscription": "Киров",
+    "material": "metal",
+    "memorial": "statue",
+    "name": "С.М. Кирову",
+    "start_date": "1943",
+    "subject:wikidata": "Q207682",
+    "subject:wikipedia": "ru:Киров, Сергей Миронович"
+  }
+},
+{
+  "type": "node",
+  "id": 4964513722,
+  "lat": 51.5326063,
+  "lon": 46.0334788,
+  "tags": {
+    "historic": "monument"
+  }
+},
+{
+  "type": "node",
+  "id": 4968970025,
+  "lat": 51.4778370,
+  "lon": 46.1339916,
+  "tags": {
+    "historic": "monument",
+    "name": "Танцующая пара"
+  }
+},
+{
+  "type": "node",
+  "id": 4968970026,
+  "lat": 51.4821082,
+  "lon": 46.1301692,
+  "tags": {
+    "historic": "monument",
+    "name": "Пограничникам"
+  }
+},
+{
+  "type": "node",
+  "id": 5119319270,
+  "lat": 51.5293492,
+  "lon": 45.9787074,
+  "tags": {
+    "historic": "monument",
+    "name": "МИГ-21"
+  }
+},
+{
+  "type": "node",
+  "id": 5119319271,
+  "lat": 51.5292149,
+  "lon": 45.9783783,
+  "tags": {
+    "historic": "monument",
+    "name": "Зенитный ракетный комплекс С-25"
+  }
+},
+{
+  "type": "node",
+  "id": 5119319272,
+  "lat": 51.5294394,
+  "lon": 45.9785375,
+  "tags": {
+    "historic": "monument",
+    "name": "Автоматическая зенитная пушка С-60"
+  }
+},
+{
+  "type": "node",
+  "id": 5659126205,
+  "lat": 51.5165232,
+  "lon": 46.0149927,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "war_memorial",
+    "name": "Вечная слава павшим за Родину",
+    "start_date": "Открыт в 1980 г., реконструирован 19 августа 2009 г."
+  }
+},
+{
+  "type": "node",
+  "id": 5746272254,
+  "lat": 51.5271491,
+  "lon": 46.0455273,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "stele",
+    "name": "Хачкар",
+    "stele": "khachkar"
+  }
+},
+{
+  "type": "node",
+  "id": 5758695256,
+  "lat": 51.5295487,
+  "lon": 46.0243141,
+  "tags": {
+    "historic": "memorial",
+    "name": "Пушкин"
+  }
+},
+{
+  "type": "node",
+  "id": 5776296454,
+  "lat": 51.5293632,
+  "lon": 46.0386636,
+  "tags": {
+    "historic": "memorial",
+    "name": "Саратовский трамвай"
+  }
+},
+{
+  "type": "node",
+  "id": 5777288653,
+  "lat": 51.5488842,
+  "lon": 45.9561135,
+  "tags": {
+    "historic": "memorial",
+    "name": "Ленин"
+  }
+},
+{
+  "type": "node",
+  "id": 5777288654,
+  "lat": 51.5491264,
+  "lon": 45.9559301,
+  "tags": {
+    "historic": "memorial",
+    "name": "Пушкин"
+  }
+},
+{
+  "type": "node",
+  "id": 5777306753,
+  "lat": 51.4751990,
+  "lon": 46.1274089,
+  "tags": {
+    "historic": "memorial",
+    "name": "Пушкин"
+  }
+},
+{
+  "type": "node",
+  "id": 5777319653,
+  "lat": 51.5299964,
+  "lon": 46.0011120,
+  "tags": {
+    "historic": "memorial",
+    "name": "Ленин"
+  }
+},
+{
+  "type": "node",
+  "id": 5777324056,
+  "lat": 51.5302262,
+  "lon": 46.0050142,
+  "tags": {
+    "historic": "memorial",
+    "name": "Ленин"
+  }
+},
+{
+  "type": "node",
+  "id": 5777376254,
+  "lat": 51.5696119,
+  "lon": 45.9824651,
+  "tags": {
+    "historic": "memorial",
+    "material": "concrete",
+    "memorial": "bust",
+    "memorial:subject": "Владимир Ильич Ленин",
+    "name": "В. И. Ленину"
+  }
+},
+{
+  "type": "node",
+  "id": 5792075754,
+  "lat": 51.5221926,
+  "lon": 46.0231968,
+  "tags": {
+    "historic": "memorial",
+    "name": "Водопроводчик"
+  }
+},
+{
+  "type": "node",
+  "id": 5792075755,
+  "lat": 51.5384031,
+  "lon": 46.0401981,
+  "tags": {
+    "historic": "memorial",
+    "name": "Студент"
+  }
+},
+{
+  "type": "node",
+  "id": 6278412985,
+  "lat": 51.5293490,
+  "lon": 46.0386417,
+  "tags": {
+    "historic": "memorial",
+    "name": "Саратовский трамвай",
+    "name:en": "Saratov Streetcar"
+  }
+},
+{
+  "type": "node",
+  "id": 6590556088,
+  "lat": 51.5304631,
+  "lon": 45.9787742,
+  "tags": {
+    "historic": "memorial",
+    "material": "stone",
+    "memorial": "stone",
+    "name": "Глыба ума"
+  }
+},
+{
+  "type": "node",
+  "id": 8809843829,
+  "lat": 51.5662706,
+  "lon": 46.0266571,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "plaque",
+    "name": "Осипову В.И."
+  }
+},
+{
+  "type": "node",
+  "id": 9093519609,
+  "lat": 51.4850212,
+  "lon": 46.1307633,
+  "tags": {
+    "historic": "memorial",
+    "inscription": "Советский подвижный зенитный ракетный комплекс",
+    "material": "steel",
+    "memorial": "war_memorial",
+    "name": "С-75 «Двина»",
+    "wikidata": "Q163186",
+    "wikipedia": "ru:С-75"
+  }
+},
+{
+  "type": "node",
+  "id": 9235374269,
+  "lat": 51.4732022,
+  "lon": 46.1548533,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "stele",
+    "name": "Аист"
+  }
+},
+{
+  "type": "node",
+  "id": 9376180875,
+  "lat": 51.5335189,
+  "lon": 46.0200114,
+  "tags": {
+    "historic": "memorial",
+    "inscription": "Братья Никитины основатели русского национального цирка",
+    "memorial": "sculpture",
+    "name": "Братьям Никитиным"
+  }
+},
+{
+  "type": "node",
+  "id": 9804423496,
+  "lat": 51.4910539,
+  "lon": 45.8575518,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "stele",
+    "name": "Воинам водителям"
+  }
+},
+{
+  "type": "node",
+  "id": 10165765911,
+  "lat": 51.5369331,
+  "lon": 46.0013757,
+  "tags": {
+    "historic": "memorial",
+    "inscription": "Здесь учился Герой Советского Союза (удостоен 05.05.1990) генерал-лейтенант авиации Ерёмин Борис Николаевич",
+    "memorial": "plaque",
+    "owner": "Российское военно-историческое общество"
+  }
+},
+{
+  "type": "node",
+  "id": 10165765912,
+  "lat": 51.5369044,
+  "lon": 46.0013340,
+  "tags": {
+    "historic": "memorial",
+    "inscription": "В этой школе с 1989 г. по 1998 г. учился рядовой Пинчук Александр Валерьевич. Погиб при выполнении воинского долга. Награждён орденом «Мужества»",
+    "memorial": "plaque",
+    "owner": "Российское военно-историческое общество"
+  }
+},
+{
+  "type": "node",
+  "id": 10165765913,
+  "lat": 51.5369101,
+  "lon": 46.0013422,
+  "tags": {
+    "historic": "memorial",
+    "inscription": "Памятник градостроительства и архитектуры регионального значения. Училище народное. 1908 г. Архитектор Г. Г. Плотников. Охраняется государством.",
+    "memorial": "plaque",
+    "owner": "Российское военно-историческое общество"
+  }
+},
+{
+  "type": "node",
+  "id": 10291368225,
+  "lat": 51.5726499,
+  "lon": 45.9799051,
+  "tags": {
+    "historic": "memorial",
+    "material": "granite",
+    "memorial": "bust",
+    "memorial:subject": "Андрей Михайлович Бабушкин",
+    "name": "А. М. Бабушкину"
+  }
+},
+{
+  "type": "node",
+  "id": 10291368251,
+  "lat": 51.5702736,
+  "lon": 45.9826655,
+  "tags": {
+    "historic": "memorial",
+    "material": "bronze",
+    "memorial": "bust",
+    "memorial:subject": "Умнов Георгий Архипович",
+    "name": "Г. А. Умнову"
+  }
+},
+{
+  "type": "node",
+  "id": 10730899905,
+  "lat": 51.5350673,
+  "lon": 46.0160058,
+  "tags": {
+    "historic": "memorial",
+    "name": "Галерея Героев Советского союза"
+  }
+},
+{
+  "type": "node",
+  "id": 10731264712,
+  "lat": 51.5350672,
+  "lon": 46.0160057,
+  "tags": {
+    "historic": "memorial",
+    "name": "Галерея Героев Советского союза"
+  }
+},
+{
+  "type": "node",
+  "id": 11062957934,
+  "lat": 51.6148956,
+  "lon": 45.9714394,
+  "tags": {
+    "historic": "memorial",
+    "inscription": "Я люблю Саратов",
+    "memorial": "sculpture",
+    "name": "Я люблю Саратов"
+  }
+},
+{
+  "type": "node",
+  "id": 11505673828,
+  "lat": 51.5371515,
+  "lon": 46.0118554,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "plaque",
+    "name": "Сидор Артемьевич Ковпак"
+  }
+},
+{
+  "type": "node",
+  "id": 11505673829,
+  "lat": 51.5371260,
+  "lon": 46.0119538,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "plaque",
+    "name": "Шацкин"
+  }
+},
+{
+  "type": "node",
+  "id": 11911412139,
+  "lat": 51.5383159,
+  "lon": 46.0107709,
+  "tags": {
+    "historic": "memorial",
+    "material": "metal",
+    "memorial": "statue",
+    "name": "А. А. Романову"
+  }
+},
+{
+  "type": "node",
+  "id": 13142579631,
+  "lat": 51.5399388,
+  "lon": 46.0062150,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "plaque",
+    "name": "В. А. Артисевич"
+  }
+},
+{
+  "type": "node",
+  "id": 13142579717,
+  "lat": 51.5352440,
+  "lon": 46.0230567,
+  "tags": {
+    "historic": "memorial",
+    "inscription": "ТЮЗ Юрий Киселев",
+    "material": "metal",
+    "memorial": "sculpture",
+    "name": "Юрию Киселеву"
+  }
+},
+{
+  "type": "node",
+  "id": 13142579728,
+  "lat": 51.5330753,
+  "lon": 46.0178739,
+  "tags": {
+    "historic": "memorial",
+    "inscription": "На костёр пойдём, гореть будем, но от убеждений своих не откажемся Н. Вавилов",
+    "material": "concrete",
+    "memorial": "stone"
+  }
+},
+{
+  "type": "node",
+  "id": 13142579729,
+  "lat": 51.5332211,
+  "lon": 46.0179462,
+  "tags": {
+    "historic": "memorial",
+    "inscription": "Мне не жаль отдать жизнь ради хоть самого малого в науке Н. Вавилов",
+    "material": "concrete",
+    "memorial": "stone"
+  }
+},
+{
+  "type": "node",
+  "id": 13142579739,
+  "lat": 51.5290705,
+  "lon": 46.0397805,
+  "tags": {
+    "contact:website": "https://radmuseumart.ru/projects/multicollection/YtkinPS/",
+    "historic": "memorial",
+    "inscription": "В этом доме жил и работал художник Петр Саввич Уткин",
+    "memorial": "plaque",
+    "name": "П. С. Уткину"
+  }
+},
+{
+  "type": "node",
+  "id": 13142579775,
+  "lat": 51.5227566,
+  "lon": 46.0308118,
+  "tags": {
+    "historic": "memorial",
+    "material": "bronze",
+    "memorial": "sculpture",
+    "name": "Военной медсестре",
+    "start_date": "2021-05-14"
+  }
+},
+{
+  "type": "node",
+  "id": 13142579807,
+  "lat": 51.5034540,
+  "lon": 46.1260387,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "eternal_flame"
+  }
+},
+{
+  "type": "node",
+  "id": 13142579808,
+  "lat": 51.5034041,
+  "lon": 46.1249924,
+  "tags": {
+    "historic": "memorial",
+    "inscription": "Здесь будет установлен памятник покровчанам - военным морякам всех поколений",
+    "memorial": "stone"
+  }
+},
+{
+  "type": "node",
+  "id": 13142579816,
+  "lat": 51.5041138,
+  "lon": 46.1217797,
+  "tags": {
+    "historic": "memorial",
+    "inscription": "Гагарин Юрий Алексеевич Перед полётом... Королёв Сергей Павлович",
+    "material": "metal",
+    "memorial": "sculpture",
+    "name": "Перед полётом..."
+  }
+},
+{
+  "type": "node",
+  "id": 13302096474,
+  "lat": 51.5651806,
+  "lon": 45.9805950,
+  "tags": {
+    "historic": "memorial",
+    "inscription": "Первый директор школы №76 Кавалер двух орденов Александра Невского ГАЛИЦКИЙ МИХАИЛ ГРИГОРЬЕВИЧ",
+    "material": "stone",
+    "memorial": "plaque",
+    "memorial:subject": "Михаил Григорьевич Галицикй",
+    "name": "М. Г. Галицкому"
+  }
+},
+{
+  "type": "node",
+  "id": 13302096475,
+  "lat": 51.5379236,
+  "lon": 46.0172894,
+  "tags": {
+    "historic": "memorial",
+    "inscription": "Улица названа в честь Героя Советского Союза\nРАХОВА ВИКТОРА ГЕОРГИЕВИЧА\nСовершившего бессмертный подвиг на Халхин-Голе",
+    "memorial": "plaque",
+    "memorial:subject": "Виктор Георгиевич Рахов",
+    "name": "В. Г. Рахову"
+  }
+},
+{
+  "type": "node",
+  "id": 13358085511,
+  "lat": 51.6108886,
+  "lon": 46.0018585,
+  "tags": {
+    "historic": "memorial",
+    "inscription": "Парк Солнечный \nОснован в 1992 году\nВосстановлен в 2011 году",
+    "memorial": "stone",
+    "name": "Закладной камень"
+  }
+},
+{
+  "type": "node",
+  "id": 13535089939,
+  "lat": 51.5035500,
+  "lon": 45.9551860,
+  "tags": {
+    "direction": "135",
+    "historic": "memorial",
+    "inscription": "\"НИКТО НЕ ЗАБЫТ И\nНИЧТО НЕ ЗАБЫТО.\"\nСаратовцам,\nучастникам Сталинградской битвы.",
+    "memorial": "plaque",
+    "name": "Никто не забыт и ничто не забыто"
+  }
+},
+{
+  "type": "node",
+  "id": 13536507523,
+  "lat": 51.5038784,
+  "lon": 45.9474475,
+  "tags": {
+    "historic": "memorial",
+    "material": "metal",
+    "name": "Рояль"
+  }
+},
+{
+  "type": "node",
+  "id": 13536507554,
+  "lat": 51.5035779,
+  "lon": 45.9474094,
+  "tags": {
+    "historic": "memorial",
+    "name": "Колодец"
+  }
+},
+{
+  "type": "node",
+  "id": 13536507599,
+  "lat": 51.5039419,
+  "lon": 45.9473612,
+  "tags": {
+    "direction": "320",
+    "historic": "memorial",
+    "inscription": "Площадь\nДружбы Народов\n\nЕдинство народов\nво благо единой\nРоссии",
+    "memorial": "plaque",
+    "name": "Дружба Народов"
+  }
+},
+{
+  "type": "node",
+  "id": 13536943601,
+  "lat": 51.5017280,
+  "lon": 45.9431276,
+  "tags": {
+    "historic": "memorial",
+    "name": "Рука с шаром"
+  }
+},
+{
+  "type": "node",
+  "id": 13718944006,
+  "lat": 51.5093960,
+  "lon": 45.9812817,
+  "tags": {
+    "historic": "memorial",
+    "material": "concrete",
+    "memorial": "statue",
+    "name": "В. И. Ленин"
+  }
+},
+{
+  "type": "node",
+  "id": 14061045503,
+  "lat": 51.5577870,
+  "lon": 46.0308614,
+  "tags": {
+    "fixme": "уточнить местоположение",
+    "historic": "memorial",
+    "inscription": "Площадь им. Героев Донбасса",
+    "memorial": "stone"
+  }
+},
+{
+  "type": "node",
+  "id": 14061666760,
+  "lat": 51.5577695,
+  "lon": 46.0089532,
+  "tags": {
+    "historic": "memorial",
+    "inscription": "Жертвам массовых политических репрессий, невинно убиенным на земле Саратовской",
+    "memorial": "stone",
+    "name": "Жервам политических репрессий"
+  }
+},
+{
+  "type": "node",
+  "id": 14268354628,
+  "lat": 51.5207239,
+  "lon": 46.0314220,
+  "tags": {
+    "artist_name": "Андрей Александрович Щербаков",
+    "historic": "memorial",
+    "memorial": "statue",
+    "memorial:subject": "Фёдор Фёдорович Ушаков",
+    "name": "Ф. Ф. Ушакову",
+    "start_date": "2026-08-25",
+    "subject:wikidata": "Q314339",
+    "subject:wikipedia": "ru:Ушаков, Фёдор Фёдорович"
+  }
+},
+{
+  "type": "node",
+  "id": 14309338715,
+  "lat": 51.5316333,
+  "lon": 46.0242837,
+  "tags": {
+    "historic": "memorial",
+    "memorial": "plaque",
+    "name": "Жану-Батисту Николя Савену",
+    "start_date": "1999"
+  }
+},
+{
+  "type": "way",
+  "id": 104956828,
+  "center": {
+    "lat": 51.5339563,
+    "lon": 46.0328624
+  },
+  "tags": {
+    "historic": "memorial",
+    "name": "Сотрудникам правоохранительных органов, погибшим при исполнении"
+  }
+},
+{
+  "type": "way",
+  "id": 245491524,
+  "center": {
+    "lat": 51.5787157,
+    "lon": 45.9486193
+  },
+  "tags": {
+    "historic": "memorial",
+    "name": "Кладбище венгерских военнопленных",
+    "natural": "grass",
+    "note": "Это бывшее кладбище, сейчас здесь мемориал памяти"
+  }
+},
+{
+  "type": "way",
+  "id": 299618663,
+  "center": {
+    "lat": 51.5447904,
+    "lon": 46.0517054
+  },
+  "tags": {
+    "historic": "memorial",
+    "memorial": "war_memorial",
+    "name": "Аллея Героев",
+    "source": "survey"
+  }
+},
+{
+  "type": "way",
+  "id": 299618667,
+  "center": {
+    "lat": 51.5449223,
+    "lon": 46.0530246
+  },
+  "tags": {
+    "historic": "memorial",
+    "memorial": "war_memorial",
+    "name": "Молчащий колокол",
+    "start_date": "2000-05-09"
+  }
+},
+{
+  "type": "way",
+  "id": 299618675,
+  "center": {
+    "lat": 51.5449723,
+    "lon": 46.0521131
+  },
+  "tags": {
+    "historic": "memorial",
+    "memorial": "war_memorial",
+    "name": "Вечный огонь"
+  }
+},
+{
+  "type": "way",
+  "id": 307580576,
+  "center": {
+    "lat": 51.5317491,
+    "lon": 46.0363935
+  },
+  "tags": {
+    "historic": "monument",
+    "name": "Столыпин",
+    "start_date": "2002-04-17",
+    "subject:wikidata": "Q138487",
+    "wikidata": "Q4343312",
+    "wikipedia": "ru:Памятник Петру Столыпину (Саратов)"
+  }
+},
+{
+  "type": "way",
+  "id": 338319103,
+  "center": {
+    "lat": 51.4711927,
+    "lon": 46.1322339
+  },
+  "tags": {
+    "historic": "memorial",
+    "memorial": "war_memorial"
+  }
+},
+{
+  "type": "way",
+  "id": 357489086,
+  "center": {
+    "lat": 51.4785610,
+    "lon": 46.1542574
+  },
+  "tags": {
+    "historic": "memorial",
+    "memorial": "war_memorial",
+    "name": "Ту-16"
+  }
+},
+{
+  "type": "way",
+  "id": 399001407,
+  "center": {
+    "lat": 51.5389949,
+    "lon": 46.0105324
+  },
+  "tags": {
+    "historic": "memorial",
+    "material": "metal",
+    "memorial": "sculpture",
+    "name": "Кириллу и Мефодию"
+  }
+},
+{
+  "type": "way",
+  "id": 400100416,
+  "center": {
+    "lat": 51.5350582,
+    "lon": 46.0159611
+  },
+  "tags": {
+    "historic": "memorial",
+    "memorial": "war_memorial"
+  }
+},
+{
+  "type": "way",
+  "id": 682395271,
+  "center": {
+    "lat": 51.5787847,
+    "lon": 46.0732678
+  },
+  "tags": {
+    "historic": "memorial"
+  }
+},
+{
+  "type": "way",
+  "id": 983675671,
+  "center": {
+    "lat": 51.5326061,
+    "lon": 46.0334747
+  },
+  "tags": {
+    "historic": "memorial"
+  }
+},
+{
+  "type": "way",
+  "id": 1449737342,
+  "center": {
+    "lat": 51.5626215,
+    "lon": 46.0080762
+  },
+  "tags": {
+    "area": "yes",
+    "heritage": "4",
+    "historic": "memorial",
+    "inscription": "Потомки благодарны Вам, родные, за то что Вы выстояли и победили",
+    "material": "stone",
+    "memorial": "war_memorial",
+    "memorial:conflict": "WW2",
+    "name": "Братская могила",
+    "official_name": "Братская могила советских воинов, умерших от ран в саратовских госпиталях в годы Великой Отечественной войны 1941-1945 гг.",
+    "ref": "641711081690005"
+  }
+},
+{
+  "type": "way",
+  "id": 1475274784,
+  "center": {
+    "lat": 51.5028756,
+    "lon": 45.9565240
+  },
+  "tags": {
+    "historic": "monument",
+    "name": "Город трудовой доблести"
+  }
+},
+{
+  "type": "way",
+  "id": 1545956243,
+  "center": {
+    "lat": 51.5580996,
+    "lon": 46.0306521
+  },
+  "tags": {
+    "historic": "memorial",
+    "inscription": "Героям Донбасса",
+    "material": "bronze",
+    "memorial": "war_memorial",
+    "name": "героям Донбасса"
+  }
+}
+
+  ]
+}

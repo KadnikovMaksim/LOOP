@@ -1,0 +1,5 @@
+[out:json][timeout:120];
+(
+  nwr["historic"~"^(monument|memorial)$"](51.47,45.85,51.62,46.20);
+);
+out center tags;
