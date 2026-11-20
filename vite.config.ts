@@ -10,6 +10,15 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  server: {
+    // Allow opening the dev server from a phone on the same network or via a tunnel.
+    host: true,
+    allowedHosts: true,
+    proxy: {
+      // Same-origin API calls are forwarded to the Express backend.
+      '/api': 'http://localhost:4000',
+    },
+  },
   optimizeDeps: {
     exclude: ['lucide-react'],
   },

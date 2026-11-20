@@ -2,9 +2,14 @@ import type { Place } from './types';
 
 /**
  * Base URL of the self-hosted Express backend.
- * Falls back to localhost so the app works out of the box.
+ * - If VITE_API_BASE_URL is set, it is used directly.
+ * - If it is set to an empty string, requests go to the same origin (the Vite
+ *   dev-server proxy forwards /api to localhost:4000). This is what makes the
+ *   app work through an HTTPS tunnel on a phone.
+ * - If it is not defined at all, localhost:4000 is used.
  */
-const API_BASE = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000').replace(/\/$/, '');
+const configuredBase = import.meta.env.VITE_API_BASE_URL as string | undefined;
+const API_BASE = (configuredBase ?? 'http://localhost:4000').replace(/\/$/, '');
 
 async function handleResponse(res: Response) {
   if (!res.ok) {
