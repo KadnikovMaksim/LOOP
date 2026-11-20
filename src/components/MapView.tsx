@@ -17,8 +17,8 @@ import { PlaceMarker, endpointIcon } from './PlaceMarker';
 import type { Place } from '@/lib/types';
 import { MapPin, Route as RouteIcon, Clock, Footprints, X, LocateFixed, Loader2, Navigation, Layers, ChevronDown, Navigation2 } from 'lucide-react';
 
-/** Last-resort centre if neither GPS nor IP lookup works. */
-const DEFAULT_CENTER: [number, number] = [50.0875, 14.4214];
+/** Fallback centre (Saratov) when GPS/IP lookup is unavailable. */
+const DEFAULT_CENTER: [number, number] = [51.5336, 46.0343];
 
 interface MapViewProps {
   places: Place[];
@@ -492,7 +492,7 @@ export default function MapView({
     <div className="relative h-full w-full">
       <MapContainer
         center={DEFAULT_CENTER}
-        zoom={12}
+        zoom={13}
         className="h-full w-full z-0"
         zoomControl={false}
       >

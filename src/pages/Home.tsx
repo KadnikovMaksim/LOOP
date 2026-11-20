@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import MapView from '@/components/MapView';
 import PlaceDetail from '@/components/PlaceDetail';
-import { fetchPlaces } from '@/lib/places';
+import { fetchPlaces, API_BASE } from '@/lib/places';
 import { categoryConfig } from '@/lib/categories';
 import { pickStopsAlongRoute, estimateWalkingSeconds } from '@/lib/routeBuilder';
 import { straightLineDistance } from '@/lib/routing';
@@ -103,13 +103,18 @@ export default function Home() {
   const [notice, setNotice] = useState<string | null>(null);
   const [navigating, setNavigating] = useState(false);
   const [startingNavigation, setStartingNavigation] = useState(false);
+  const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
+    setLoading(true);
+    setError(null);
     fetchPlaces()
       .then(setPlaces)
-      .catch(() => setError('Не удалось загрузить места. Обновите страницу.'))
+      .catch((err) => {
+        setError(err instanceof Error ? err.message : 'Неизвестная ошибка');
+      })
       .finally(() => setLoading(false));
-  }, []);
+  }, [reloadKey]);
 
   const focusId = (location.state as { focusPlaceId?: string } | null)?.focusPlaceId;
   useEffect(() => {
@@ -571,7 +576,37 @@ export default function Home() {
             <Loader2 className="h-8 w-8 animate-spin text-forest-600" />
           </div>
         ) : error ? (
-          <div className="flex h-full items-center justify-center px-6 text-center text-stone-600">{error}</div>
+          <div className="flex h-full items-center justify-center px-6">
+            <div className="w-full max-w-md rounded-3xl bg-white p-6 text-center shadow-card ring-1 ring-stone-200/70">
+              <p className="text-lg font-semibold text-stone-900">Не удалось загрузить места</p>
+              <p className="mt-2 text-sm text-stone-600">
+                Похоже, бэкенд не запущен. В папке{' '}
+                <code className="rounded bg-stone-100 px-1 py-0.5 text-xs">server</code> выполните:
+              </p>
+              <pre className="mt-2 rounded-xl bg-stone-900 px-3 py-2 text-left text-xs text-stone-100">
+{`npm install
+npm start`}
+              </pre>
+              <p className="mt-3 text-xs text-stone-400">
+                Проверка:{' '}
+                <a
+                  href={`${API_BASE || window.location.origin}/api/health`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="underline hover:text-forest-700"
+                >
+                  {`${API_BASE || window.location.origin}/api/health`}
+                </a>
+              </p>
+              <button
+                onClick={() => setReloadKey((k) => k + 1)}
+                className="mt-4 w-full rounded-xl bg-forest-700 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-forest-800"
+              >
+                Повторить
+              </button>
+              <p className="mt-2 break-words text-[11px] text-red-500">{error}</p>
+            </div>
+          </div>
         ) : (
           <MapView
             places={places}

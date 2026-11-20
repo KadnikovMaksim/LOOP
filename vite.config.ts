@@ -16,7 +16,8 @@ export default defineConfig({
     allowedHosts: true,
     proxy: {
       // Same-origin API calls are forwarded to the Express backend.
-      '/api': 'http://localhost:4000',
+      // 127.0.0.1 avoids IPv6/localhost resolution issues on macOS.
+      '/api': 'http://127.0.0.1:4000',
     },
   },
   optimizeDeps: {

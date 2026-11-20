@@ -9,7 +9,7 @@ import type { Place } from './types';
  * - If it is not defined at all, localhost:4000 is used.
  */
 const configuredBase = import.meta.env.VITE_API_BASE_URL as string | undefined;
-const API_BASE = (configuredBase ?? 'http://localhost:4000').replace(/\/$/, '');
+export const API_BASE = (configuredBase ?? 'http://localhost:4000').replace(/\/$/, '');
 
 async function handleResponse(res: Response) {
   if (!res.ok) {
