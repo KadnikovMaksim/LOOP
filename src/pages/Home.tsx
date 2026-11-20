@@ -26,6 +26,11 @@ import type { Place } from '@/lib/types';
 
 const INTEREST_CATEGORIES = ['museum', 'monument', 'park', 'scenic', 'cafe'];
 
+/** Custom map points and "my location" exist only for the route, not as places. */
+function isRouteOnlyPlace(place: Place): boolean {
+  return place.id.startsWith('custom-') || place.id.startsWith('me-');
+}
+
 const PRESETS = [
   {
     id: 'fast',
@@ -132,18 +137,34 @@ export default function Home() {
     [routeIds, places],
   );
 
-  const addToRoute = useCallback((place: Place) => {
-    setRouteIds((prev) => {
-      if (prev.includes(place.id)) return prev;
-      if (prev.length === 0) return [place.id];
-      if (prev.length === 1) return [prev[0], place.id];
-      return [...prev.slice(0, -1), place.id, prev[prev.length - 1]];
-    });
-    setSelected(null);
-  }, []);
+  const addToRoute = useCallback(
+    (place: Place) => {
+      setRouteIds((prev) => {
+        if (prev.includes(place.id)) return prev;
+        if (prev.length === 0) return [place.id];
+        if (prev.length === 1) return [prev[0], place.id];
+        return [...prev.slice(0, -1), place.id, prev[prev.length - 1]];
+      });
+      if (routeIds.length === 0) {
+        setNotice('Точка назначения выбрана. Нажмите «Пойдём» — старт будет с вашего местоположения.');
+      }
+      setSelected(null);
+    },
+    [routeIds.length],
+  );
 
   function removeFromRoute(place: Place) {
     setRouteIds((prev) => prev.filter((id) => id !== place.id));
+    if (isRouteOnlyPlace(place)) {
+      setPlaces((prev) => prev.filter((p) => p.id !== place.id));
+    }
+  }
+
+  function clearRoute() {
+    setRouteIds([]);
+    setNavigating(false);
+    setNotice(null);
+    setPlaces((prev) => prev.filter((p) => !isRouteOnlyPlace(p)));
   }
 
   function handleMapPick(lat: number, lng: number) {
@@ -193,8 +214,12 @@ export default function Home() {
   );
 
   const buildRoute = useCallback(() => {
-    if (!routeStart || !routeEnd || routeStart.id === routeEnd.id) {
-      setNotice('Поставьте точки A и B на карте.');
+    if (!routeStart) {
+      setNotice('Поставьте точку B — куда идём.');
+      return;
+    }
+    if (routeStart.id === routeEnd.id) {
+      setNotice('Точка назначения выбрана. Нажмите «Пойдём» — старт будет с вашего местоположения.');
       return;
     }
     const active = Object.values(weights).some((w) => w > 0);
@@ -526,7 +551,7 @@ export default function Home() {
                         isEndpoint ? 'bg-forest-700 text-white' : 'bg-forest-50 text-forest-800'
                       }`}
                     >
-                      {isEndpoint ? (i === 0 ? 'A' : 'B') : i}
+                      {routePlaces.length === 1 ? 'B' : isEndpoint ? (i === 0 ? 'A' : 'B') : i}
                     </span>
                     <div className="min-w-0 flex-1">
                       <button
@@ -537,7 +562,13 @@ export default function Home() {
                       </button>
                       <p className="flex items-center gap-1 text-[11px] text-stone-400">
                         <cfg.icon className="h-3 w-3" />
-                        {isEndpoint ? (i === 0 ? 'Старт' : 'Финиш') : cfg.label}
+                        {routePlaces.length === 1
+                          ? 'Финиш'
+                          : isEndpoint
+                            ? i === 0
+                              ? 'Старт'
+                              : 'Финиш'
+                            : cfg.label}
                       </p>
                     </div>
                     <button
@@ -568,14 +599,10 @@ export default function Home() {
         </div>
       </div>
 
-      {routePlaces.length >= 2 && (
+      {routePlaces.length >= 1 && (
         <div className="border-t border-stone-200/70 px-5 py-3">
           <button
-            onClick={() => {
-              setRouteIds([]);
-              setNavigating(false);
-              setNotice(null);
-            }}
+            onClick={clearRoute}
             className="w-full rounded-xl px-3 py-2 text-xs font-medium text-stone-500 transition hover:bg-white hover:text-red-600"
           >
             Очистить маршрут

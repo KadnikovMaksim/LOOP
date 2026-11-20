@@ -36,6 +36,11 @@ interface MapViewProps {
   onStopNavigation: () => void;
 }
 
+/** Route-only points (current location, custom A/B) are not regular map places. */
+function isRouteOnly(place: Place): boolean {
+  return place.id.startsWith('custom-') || place.id.startsWith('me-');
+}
+
 function ClickHandler({ onPick }: { onPick: (lat: number, lng: number) => void }) {
   useMapEvents({
     click(e) {
@@ -157,6 +162,64 @@ function headingIcon(bearing: number): L.DivIcon {
   }, [enabled]);
 
   return { watchPosition: position, watchError: error };
+}
+
+/** Reads the phone compass heading (0–360°, 0 = north) while navigating. */
+function useCompassHeading(enabled: boolean): number | null {
+  const [heading, setHeading] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (!enabled || typeof window === 'undefined') {
+      setHeading(null);
+      return;
+    }
+
+    let disposed = false;
+
+    const handle = (event: DeviceOrientationEvent) => {
+      const webkit = (event as DeviceOrientationEvent & { webkitCompassHeading?: number })
+        .webkitCompassHeading;
+
+      let value: number | null = null;
+      if (typeof webkit === 'number' && Number.isFinite(webkit)) {
+        value = webkit;
+      } else if (typeof event.alpha === 'number' && Number.isFinite(event.alpha)) {
+        value = (360 - event.alpha + 360) % 360;
+      }
+
+      if (value !== null && !disposed) setHeading(value);
+    };
+
+    const attach = () => {
+      window.addEventListener('deviceorientationabsolute', handle as EventListener, true);
+      window.addEventListener('deviceorientation', handle, true);
+    };
+
+    const orientation = window.DeviceOrientationEvent as
+      | (typeof DeviceOrientationEvent & { requestPermission?: () => Promise<string> })
+      | undefined;
+
+    if (orientation?.requestPermission) {
+      orientation
+        .requestPermission()
+        .then((state) => {
+          if (!disposed && state === 'granted') attach();
+        })
+        .catch(() => {
+          /* permission denied — keep the map north-up */
+        });
+    } else {
+      attach();
+    }
+
+    return () => {
+      disposed = true;
+      window.removeEventListener('deviceorientationabsolute', handle as EventListener, true);
+      window.removeEventListener('deviceorientation', handle, true);
+    };
+  }, [enabled]);
+
+  return heading;
 }
 
 /** Fits the map to all loaded places when `trigger` changes. */function FitToPlaces({ places, trigger }: { places: Place[]; trigger: number }) {
@@ -351,6 +414,8 @@ export default function MapView({
   const geocodedCity = useCityName(source === 'gps' ? userPosition : null);
   const city = source === 'ip' ? ipCity : geocodedCity;
 
+  const markerPlaces = useMemo(() => places.filter((p) => !isRouteOnly(p)), [places]);
+
   const routePoints = useMemo(
     () => routePlaces.map((p) => ({ lat: p.lat, lng: p.lng })),
     [routePlaces],
@@ -491,6 +556,9 @@ export default function MapView({
 
   const direction = navigation ? turnDirection(navigation.instruction) : 'straight';
 
+  const compass = useCompassHeading(navigating);
+  const arrowHeading = compass !== null ? (heading - compass + 360) % 360 : heading;
+
   return (
     <div className="relative h-full w-full">
       <MapContainer
@@ -508,7 +576,7 @@ export default function MapView({
         <ClickHandler onPick={onMapPick} />
         <FlyTo target={navigating ? null : userPosition} zoom={source === 'ip' ? 12 : 15} />
         <FollowUser position={watchPosition} enabled={navigating} />
-        <FitToPlaces places={places} trigger={fitAllTrigger} />
+        <FitToPlaces places={markerPlaces} trigger={fitAllTrigger} />
         <FitBounds points={bounds} />
 
         {route && route.snapped ? (
@@ -525,14 +593,14 @@ export default function MapView({
           <PlaceMarker key={`wp-${p.id}`} place={p} selected={selectedPlace?.id === p.id} onSelect={onSelectPlace} />
         ))}
 
-        {places
+        {markerPlaces
           .filter((p) => !routePlaces.some((rp) => rp.id === p.id))
           .map((p) => (
             <PlaceMarker key={p.id} place={p} selected={selectedPlace?.id === p.id} onSelect={onSelectPlace} />
           ))}
 
         {navigating && watchPosition ? (
-          <Marker position={watchPosition} icon={headingIcon(heading)} zIndexOffset={1200} />
+          <Marker position={watchPosition} icon={headingIcon(arrowHeading)} zIndexOffset={1200} />
         ) : watchPosition || (userPosition && source === 'gps') ? (
           <>
             <CircleMarker
@@ -567,13 +635,13 @@ export default function MapView({
           )}
         </button>
 
-        {places.length > 0 && (
+        {markerPlaces.length > 0 && (
           <button
             onClick={() => setFitAllTrigger((n) => n + 1)}
             className="flex items-center gap-2 rounded-full bg-white/95 px-4 py-2.5 text-sm font-semibold text-stone-800 shadow-lg backdrop-blur transition hover:bg-white"
             title="Показать все места на карте"
           >
-            <Layers className="h-4 w-4 text-forest-700" /> Все места · {places.length}
+            <Layers className="h-4 w-4 text-forest-700" /> Все места · {markerPlaces.length}
           </button>
         )}
 

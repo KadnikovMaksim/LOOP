@@ -72,12 +72,6 @@ export default function PlaceDetail({ place, onClose, onAddToRoute, inRoute }: P
               {place.lat.toFixed(5)}, {place.lng.toFixed(5)}
             </span>
           </div>
-
-          {place.source === 'osm' && (
-            <p className="mt-3 text-xs text-stone-400">
-              Данные: OpenStreetMap contributors (ODbL)
-            </p>
-          )}
         </div>
 
         <div className="border-t border-stone-100 px-6 py-4">
