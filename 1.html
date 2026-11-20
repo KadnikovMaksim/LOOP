@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Пеший маршрут через достопримечательности (A → POI → B)</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    * { box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
+    body { margin: 0; display: flex; flex-direction: column; height: 100vh; background: #f8fafc; }
+
+    .panel {
+      display: flex; flex-direction: column; gap: 8px;
+      padding: 10px 14px; background: #ffffff; border-bottom: 1px solid #cbd5e1;
+      z-index: 1000; font-size: 13px;
+    }
+    .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+    button, select, input[type="text"] {
+      padding: 6px 10px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 13px;
+    }
+    button {
+      background: #2563eb; color: #fff; border-color: #2563eb; cursor: pointer; font-weight: 500;
+    }
+    button.secondary { background: #fff; color: #1e293b; border-color: #94a3b8; }
+    button.danger { background: #fff; color: #b91c1c; border-color: #fca5a5; }
+    button.danger:hover { background: #fef2f2; }
+    button.mode-active {
+      outline: 2px solid #0f172a; box-shadow: inset 0 0 0 1px #fff;
+    }
+    button.btn-a { background: #16a34a; border-color: #16a34a; }
+    button.btn-b { background: #dc2626; border-color: #dc2626; }
+
+    label.chip {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 4px 8px; background: #f1f5f9; border-radius: 999px; cursor: pointer;
+    }
+
+    #status {
+      padding: 6px 10px; background: #eff6ff; color: #1e3a8a;
+      border-radius: 6px; font-weight: 500;
+    }
+    #map { flex: 1; width: 100%; }
+
+    .stop-badge {
+      background: #ea580c; color: #fff; border: 2px solid #fff;
+      border-radius: 50%; width: 24px; height: 24px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.35);
+    }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <div class="row">
+      <button id="pickABtn" type="button" class="btn-a mode-active">Клик: точка A (старт)</button>
+      <button id="pickBBtn" type="button" class="btn-b">Клик: точка B (финиш)</button>
+      <button id="locateBtn" type="button" class="secondary">📍 Моё МП → A</button>
+
+      <input id="searchBInput" type="text" placeholder="Куда идём (адрес или место для B)..." style="min-width: 220px;" />
+      <button id="searchBBtn" type="button" class="secondary">Найти B</button>
+      <button id="rebuildBtn" type="button">Перестроить</button>
+      <button id="clearBtn" type="button" class="danger">Очистить</button>
+    </div>
+
+    <div class="row">
+      <label class="chip"><input type="checkbox" class="interest" value='tourism~"museum|artwork|viewpoint|attraction|gallery"' checked /> Культура и виды</label>
+      <label class="chip"><input type="checkbox" class="interest" value='historic~"monument|memorial|castle|ruins"' checked /> История</label>
+      <label class="chip"><input type="checkbox" class="interest" value='leisure~"park|garden"' checked /> Парки</label>
+      <label class="chip"><input type="checkbox" class="interest" value='amenity~"fountain|place_of_worship"' /> Фонтаны и храмы</label>
+
+      <label>
+        Окрестность:
+        <select id="corridorSelect">
+          <option value="250">250 м</option>
+          <option value="450" selected>450 м</option>
+          <option value="800">800 м</option>
+        </select>
+      </label>
+
+      <label>
+        Точек:
+        <select id="maxStopsSelect">
+          <option value="2">2</option>
+          <option value="3" selected>3</option>
+          <option value="4">4</option>
+          <option value="6">6</option>
+        </select>
+      </label>
+    </div>
+
+    <div id="status">Выберите точку A и точку B кликом по карте (сейчас активен выбор точки A).</div>
+  </div>
+
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([55.7558, 37.6173], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    let clickTarget = 'A';
+    let pointA = null;
+    let pointB = null;
+
+    let markerA = null;
+    let markerB = null;
+    let candidatePoisLayer = L.layerGroup().addTo(map);
+    let routeStopsLayer = L.layerGroup().addTo(map);
+    let shortestABLine = null;
+    let finalRouteLine = null;
+
+    const statusEl = document.getElementById('status');
+    const setStatus = (msg) => { statusEl.textContent = msg; };
+
+    function setClickTarget(target) {
+      clickTarget = target;
+      document.getElementById('pickABtn').classList.toggle('mode-active', target === 'A');
+      document.getElementById('pickBBtn').classList.toggle('mode-active', target === 'B');
+      setStatus(
+        target === 'A'
+          ? 'Режим выбора точки A: кликните по карте, чтобы задать старт.'
+          : 'Режим выбора точки B: кликните по карте, чтобы задать финиш.'
+      );
+    }
+
+    function clearRouteLayers() {
+      candidatePoisLayer.clearLayers();
+      routeStopsLayer.clearLayers();
+      if (shortestABLine) { map.removeLayer(shortestABLine); shortestABLine = null; }
+      if (finalRouteLine) { map.removeLayer(finalRouteLine); finalRouteLine = null; }
+    }
+
+    function clearAll() {
+      pointA = null;
+      pointB = null;
+      if (markerA) { map.removeLayer(markerA); markerA = null; }
+      if (markerB) { map.removeLayer(markerB); markerB = null; }
+      clearRouteLayers();
+      document.getElementById('searchBInput').value = '';
+      setClickTarget('A');
+      setStatus('Карта очищена. Выберите точку A и точку B.');
+    }
+
+    document.getElementById('clearBtn').addEventListener('click', clearAll);
+    document.getElementById('pickABtn').addEventListener('click', () => setClickTarget('A'));
+    document.getElementById('pickBBtn').addEventListener('click', () => setClickTarget('B'));
+
+    function updatePointA(lat, lon, title = 'Точка A (старт)', autoSwitchToB = true) {
+      pointA = [lat, lon];
+      if (markerA) map.removeLayer(markerA);
+      markerA = L.circleMarker([lat, lon], {
+        radius: 9, color: '#14532d', fillColor: '#22c55e', fillOpacity: 1, weight: 2
+      }).addTo(map).bindPopup(`<b>${title}</b>`);
+
+      if (autoSwitchToB && !pointB) {
+        setClickTarget('B');
+      }
+      if (pointA && pointB) {
+        runPipeline();
+      }
+    }
+
+    function updatePointB(lat, lon, title = 'Точка B (финиш)') {
+      pointB = [lat, lon];
+      if (markerB) map.removeLayer(markerB);
+      markerB = L.circleMarker([lat, lon], {
+        radius: 9, color: '#7f1d1d', fillColor: '#ef4444', fillOpacity: 1, weight: 2
+      }).addTo(map).bindPopup(`<b>${title}</b>`);
+
+      if (pointA && pointB) {
+        runPipeline();
+      } else {
+        setStatus('Точка B задана. Теперь укажите точку A (кнопкой «Моё МП → A» или кликом по карте).');
+      }
+    }
+
+    map.on('click', (e) => {
+      const { lat, lng } = e.latlng;
+      if (clickTarget === 'A') {
+        updatePointA(lat, lng, 'Точка A (старт)', true);
+      } else {
+        updatePointB(lat, lng, 'Точка B (финиш)');
+      }
+    });
+
+    async function detectLocationForA() {
+      const applyIpFallback = async () => {
+        try {
+          const r = await fetch('https://ipwho.is/');
+          const d = await r.json();
+          if (d.success && d.latitude && d.longitude) {
+            map.setView([d.latitude, d.longitude], 13);
+            updatePointA(d.latitude, d.longitude, `Точка A (по IP: ${d.city || 'город'})`, true);
+            setStatus(`Точка A задана по IP (${d.city}). Теперь выберите точку B кликом или поиском.`);
+            return;
+          }
+        } catch (_) {}
+        setStatus('Не удалось определить МП автоматически — кликните по карте, чтобы задать точку A.');
+      };
+
+      if (!navigator.geolocation || (!window.isSecureContext && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1')) {
+        await applyIpFallback();
+        return;
+      }
+
+      setStatus('Определяем ваше местоположение для точки A...');
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const { latitude, longitude } = pos.coords;
+          map.setView([latitude, longitude], 15);
+          updatePointA(latitude, longitude, 'Точка A (моё МП)', true);
+          setStatus('Точка A определена! Укажите точку B кликом по карте или через поиск.');
+        },
+        () => applyIpFallback(),
+        { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
+      );
+    }
+
+    async function searchPlaceForB() {
+      const q = document.getElementById('searchBInput').value.trim();
+      if (!q) return;
+      try {
+        setStatus(`Ищем «${q}»...`);
+        const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(q)}`;
+        const res = await fetch(url, { headers: { 'Accept-Language': 'ru' } });
+        const list = await res.json();
+        if (!list.length) {
+          setStatus('Место не найдено — попробуйте уточнить запрос или кликнуть по карте.');
+          return;
+        }
+        const item = list[0];
+        const lat = parseFloat(item.lat);
+        const lon = parseFloat(item.lon);
+        map.setView([lat, lon], 14);
+        updatePointB(lat, lon, `B: ${item.display_name.split(',')[0]}`);
+      } catch (err) {
+        setStatus('Ошибка поиска адреса: ' + err.message);
+      }
+    }
+
+    document.getElementById('locateBtn').addEventListener('click', detectLocationForA);
+    document.getElementById('searchBBtn').addEventListener('click', searchPlaceForB);
+    document.getElementById('searchBInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') searchPlaceForB();
+    });
+    document.getElementById('rebuildBtn').addEventListener('click', () => {
+      if (pointA && pointB) runPipeline();
+    });
+
+    function decodePolyline6(str) {
+      let index = 0, lat = 0, lng = 0, coordinates = [];
+      const factor = 1e6;
+      while (index < str.length) {
+        let b, shift = 0, result = 0;
+        do { b = str.charCodeAt(index++) - 63; result |= (b & 0x1f) << shift; shift += 5; } while (b >= 0x20);
+        lat += (result & 1) ? ~(result >> 1) : (result >> 1);
+        shift = 0; result = 0;
+        do { b = str.charCodeAt(index++) - 63; result |= (b & 0x1f) << shift; shift += 5; } while (b >= 0x20);
+        lng += (result & 1) ? ~(result >> 1) : (result >> 1);
+        coordinates.push([lat / factor, lng / factor]);
+      }
+      return coordinates;
+    }
+
+    // Попытка 1: Valhalla pedestrian
+    async function tryValhallaPedestrian(coordsList) {
+      const body = {
+        locations: coordsList.map(([lat, lon], idx) => ({
+          lat,
+          lon,
+          type: (idx === 0 || idx === coordsList.length - 1) ? 'break' : 'through'
+        })),
+        costing: 'pedestrian',
+        costing_options: {
+          pedestrian: {
+            walking_speed: 4.8,
+            walkway_factor: 0.9
+          }
+        },
+        directions_options: { units: 'kilometers' }
+      };
+
+      const res = await fetch('https://valhalla1.openstreetmap.de/route', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.trip || !Array.isArray(data.trip.legs)) {
+        const detail = data.error || data.message || `HTTP ${res.status}`;
+        throw new Error(`Valhalla: ${detail}`);
+      }
+
+      let latLngs = [];
+      for (const leg of data.trip.legs) {
+        latLngs = latLngs.concat(decodePolyline6(leg.shape));
+      }
+      return {
+        latLngs,
+        distanceKm: Number(data.trip.summary.length.toFixed(2)),
+        durationMin: Math.round(data.trip.summary.time / 60),
+        engine: 'Valhalla'
+      };
+    }
+
+    // Попытка 2 (резерв): OSRM foot profile
+    async function tryOsrmFoot(coordsList) {
+      const path = coordsList.map(([lat, lon]) => `${lon},${lat}`).join(';');
+      const url = `https://routing.openstreetmap.de/routed-foot/route/v1/foot/${path}?overview=full&geometries=geojson`;
+      const res = await fetch(url);
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.routes || !data.routes.length) {
+        throw new Error(`OSRM foot: ${data.message || `HTTP ${res.status}`}`);
+      }
+      const route = data.routes[0];
+      return {
+        latLngs: route.geometry.coordinates.map(([lon, lat]) => [lat, lon]),
+        distanceKm: Number((route.distance / 1000).toFixed(2)),
+        durationMin: Math.round(route.duration / 60),
+        engine: 'OSRM Foot'
+      };
+    }
+
+    async function fetchShortestWalkingRoute(coordsList) {
+      try {
+        return await tryValhallaPedestrian(coordsList);
+      } catch (valhallaErr) {
+        console.warn('Valhalla fallback to OSRM Foot:', valhallaErr.message);
+        return await tryOsrmFoot(coordsList);
+      }
+    }
+
+    function distMeters([lat1, lon1], [lat2, lon2]) {
+      const R = 6371000;
+      const toRad = (d) => (d * Math.PI) / 180;
+      const dLat = toRad(lat2 - lat1);
+      const dLon = toRad(lon2 - lon1);
+      const a = Math.sin(dLat / 2) ** 2 +
+        Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+      return 2 * R * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+
+    function pointToSegmentMeters(p, a, b) {
+      const cosLat = Math.cos((a[0] * Math.PI) / 180);
+      const toXY = ([lat, lon]) => [lon * 111320 * cosLat, lat * 110540];
+      const [px, py] = toXY(p);
+      const [ax, ay] = toXY(a);
+      const [bx, by] = toXY(b);
+      const dx = bx - ax, dy = by - ay;
+      const lenSq = dx * dx + dy * dy;
+      if (lenSq === 0) return Math.hypot(px - ax, py - ay);
+      const t = Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / lenSq));
+      return Math.hypot(px - (ax + t * dx), py - (ay + t * dy));
+    }
+
+    function minDistToPolyline(point, poly) {
+      let min = Infinity;
+      for (let i = 0; i < poly.length - 1; i++) {
+        const d = pointToSegmentMeters(point, poly[i], poly[i + 1]);
+        if (d < min) min = d;
+      }
+      return min;
+    }
+
+    async function findPoisNearRoute(routeLatLngs, radiusMeters) {
+      const filters = [...document.querySelectorAll('.interest:checked')].map((el) => el.value);
+      if (!filters.length) return [];
+
+      let minLat = 90, maxLat = -90, minLon = 180, maxLon = -180;
+      for (const [lat, lon] of routeLatLngs) {
+        if (lat < minLat) minLat = lat;
+        if (lat > maxLat) maxLat = lat;
+        if (lon < minLon) minLon = lon;
+        if (lon > maxLon) maxLon = lon;
+      }
+
+      const padLat = radiusMeters / 110540;
+      const padLon = radiusMeters / (111320 * Math.cos(((minLat + maxLat) / 2 * Math.PI) / 180));
+      const bbox = `${(minLat - padLat).toFixed(5)},${(minLon - padLon).toFixed(5)},${(maxLat + padLat).toFixed(5)},${(maxLon + padLon).toFixed(5)}`;
+
+      const clauses = filters.map((f) => `nwr[${f}]["name"](${bbox});`).join('\n');
+      const ql = `[out:json][timeout:20];(\n${clauses}\n);out center 150;`;
+
+      const res = await fetch('https://overpass-api.de/api/interpreter', {
+        method: 'POST',
+        body: 'data=' + encodeURIComponent(ql),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+      });
+      if (!res.ok) throw new Error('Ошибка Overpass API при поиске достопримечательностей');
+      const data = await res.json();
+
+      const seen = new Set();
+      const found = [];
+
+      for (const el of data.elements || []) {
+        const name = el.tags?.name;
+        if (!name || seen.has(name)) continue;
+
+        const lat = el.lat ?? el.center?.lat;
+        const lon = el.lon ?? el.center?.lon;
+        if (typeof lat !== 'number' || typeof lon !== 'number') continue;
+
+        const distToRoute = minDistToPolyline([lat, lon], routeLatLngs);
+        if (distToRoute > radiusMeters) continue;
+
+        const category = el.tags.tourism || el.tags.historic || el.tags.leisure || el.tags.amenity || 'объект';
+        const hasWiki = Boolean(el.tags.wikipedia || el.tags.wikidata);
+
+        seen.add(name);
+        found.push({
+          name,
+          category,
+          coords: [lat, lon],
+          distToRoute,
+          score: distToRoute - (hasWiki ? 90 : 0)
+        });
+      }
+
+      return found.sort((a, b) => a.score - b.score);
+    }
+
+    function orderStopsShortestPath(start, end, candidates, maxStops) {
+      const chosen = candidates.slice(0, maxStops).map((c) => ({ ...c }));
+      const ordered = [];
+      let current = start;
+
+      while (chosen.length > 0) {
+        let bestIdx = 0;
+        let bestCost = Infinity;
+
+        for (let i = 0; i < chosen.length; i++) {
+          const legCost = distMeters(current, chosen[i].coords) + 0.5 * distMeters(chosen[i].coords, end);
+          if (legCost < bestCost) {
+            bestCost = legCost;
+            bestIdx = i;
+          }
+        }
+
+        const [nextStop] = chosen.splice(bestIdx, 1);
+        ordered.push(nextStop);
+        current = nextStop.coords;
+      }
+
+      return ordered;
+    }
+
+    async function runPipeline() {
+      if (!pointA || !pointB) return;
+
+      try {
+        clearRouteLayers();
+
+        setStatus('Шаг 1/3: строим кратчайший пеший маршрут между A и B...');
+        const baseAB = await fetchShortestWalkingRoute([pointA, pointB]);
+        shortestABLine = L.polyline(baseAB.latLngs, {
+          color: '#94a3b8', weight: 4, dashArray: '6, 8'
+        }).addTo(map);
+
+        const radius = Number(document.getElementById('corridorSelect').value);
+        setStatus(`Шаг 2/3: ищем достопримечательности в пределах ${radius} м от маршрута...`);
+        const pois = await findPoisNearRoute(baseAB.latLngs, radius);
+
+        pois.forEach((p) => {
+          L.circleMarker(p.coords, {
+            radius: 6, color: '#0284c7', fillColor: '#38bdf8', fillOpacity: 0.75, weight: 1.5
+          })
+            .addTo(candidatePoisLayer)
+            .bindPopup(`<b>${p.name}</b><br>Категория: ${p.category}<br>До маршрута A→B: ${Math.round(p.distToRoute)} м`);
+        });
+
+        const maxStops = Number(document.getElementById('maxStopsSelect').value);
+        const orderedStops = orderStopsShortestPath(pointA, pointB, pois, maxStops);
+        setStatus(`Шаг 3/3: строим кратчайший пеший маршрут через ${orderedStops.length} точек...`);
+
+        const waypoints = [pointA, ...orderedStops.map((s) => s.coords), pointB];
+        const finalRoute = await fetchShortestWalkingRoute(waypoints);
+
+        finalRouteLine = L.polyline(finalRoute.latLngs, {
+          color: '#2563eb', weight: 5
+        }).addTo(map);
+
+        orderedStops.forEach((stop, idx) => {
+          const icon = L.divIcon({
+            className: '',
+            html: `<div class="stop-badge">${idx + 1}</div>`,
+            iconSize: [24, 24],
+            iconAnchor: [12, 12]
+          });
+          L.marker(stop.coords, { icon })
+            .addTo(routeStopsLayer)
+            .bindPopup(`<b>${idx + 1}. ${stop.name}</b><br>Категория: ${stop.category}<br>От маршрута A→B: ${Math.round(stop.distToRoute)} м`);
+        });
+
+        map.fitBounds(finalRouteLine.getBounds(), { padding: [40, 40] });
+        setStatus(
+          `Готово (${finalRoute.engine})! Найдено рядом: ${pois.length}, в маршруте: ${orderedStops.length} | ` +
+          `Итого пешком: ${finalRoute.distanceKm} км (~${finalRoute.durationMin} мин) ` +
+          `[прямой A→B: ${baseAB.distanceKm} км, ~${baseAB.durationMin} мин]`
+        );
+      } catch (err) {
+        console.error(err);
+        setStatus('Ошибка: ' + err.message);
+      }
+    }
+
+    detectLocationForA();
+  </script>
+</body>
+</html>
