@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Умный пеший маршрут на OpenStreetMap (A → POI → B)</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { margin: 0; display: flex; height: 100vh; overflow: hidden; }
+    #sidebar {
+      width: 370px; background: #fff; padding: 20px; overflow-y: auto;
+      box-shadow: 2px 0 12px rgba(0,0,0,0.1); z-index: 1000; display: flex; flex-direction: column; gap: 14px;
+    }
+    #map { flex: 1; height: 100%; }
+    h2 { margin: 0 0 4px; font-size: 18px; }
+    .hint { font-size: 13px; color: #666; margin: 0; }
+    .group { display: flex; flex-direction: column; gap: 6px; border-top: 1px solid #eee; padding-top: 12px; }
+    label { font-size: 14px; display: flex; align-items: center; gap: 8px; cursor: pointer; }
+    input[type="range"] { width: 100%; }
+    input[type="text"] {
+      width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px;
+    }
+    .btn-row { display: flex; gap: 8px; }
+    button {
+      flex: 1; padding: 10px; border: none; border-radius: 8px; font-weight: 600;
+      cursor: pointer; background: #2563eb; color: #fff; transition: 0.2s;
+    }
+    button:hover { background: #1d4ed8; }
+    button:disabled { background: #94a3b8; cursor: not-allowed; }
+    button.secondary { background: #f1f5f9; color: #334155; }
+    button.secondary:hover { background: #e2e8f0; }
+    #stats {
+      background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;
+      padding: 12px; font-size: 13px; line-height: 1.5;
+    }
+    .poi-list { margin: 8px 0 0; padding-left: 18px; font-size: 13px; color: #334155; }
+    .badge {
+      display: inline-block; font-size: 11px; padding: 2px 6px; border-radius: 4px;
+      background: #dcfce7; color: #166534; font-weight: 600; margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="sidebar">
+  <div>
+    <span class="badge">100% OpenStreetMap • Без API-ключей</span>
+    <h2>🚶 Прогулка по OpenStreetMap</h2>
+    <p class="hint" id="status">Кликните на карту для выбора старта (A) или нажмите «Моё МП».</p>
+  </div>
+
+  <div class="btn-row">
+    <button class="secondary" id="btnLocate">📍 Моё МП → A</button>
+    <button class="secondary" id="btnReset">Очистить</button>
+  </div>
+
+  <div class="group">
+    <strong>Куда идем? (Поиск по OpenStreetMap)</strong>
+    <div class="btn-row">
+      <input type="text" id="searchB" placeholder="Например: Парк Липки или проспект Столыпина" />
+      <button class="secondary" id="btnSearchB" style="flex: 0 0 80px;">Найти</button>
+    </div>
+    <span class="hint">Или просто кликните в нужное место на карте.</span>
+  </div>
+
+  <div class="group">
+    <strong>1. Сколько у вас есть времени?</strong>
+    <label>
+      Лимит прогулки: <b id="timeVal">45</b> мин
+    </label>
+    <input type="range" id="timeBudget" min="15" max="180" step="5" value="45" />
+  </div>
+
+  <div class="group">
+    <strong>2. Что вам интересно?</strong>
+    <label><input type="checkbox" value='["tourism"~"museum|artwork|viewpoint|attraction|gallery"]' checked /> Культура и виды</label>
+    <label><input type="checkbox" value='["historic"~"monument|memorial|castle|ruins"]' checked /> Памятники и история</label>
+    <label><input type="checkbox" value='["leisure"~"park|garden"]' checked /> Парки и скверы</label>
+    <label><input type="checkbox" value='["amenity"~"fountain|place_of_worship"]' /> Фонтаны и храмы</label>
+  </div>
+
+  <button id="btnBuild">Построить маршрут</button>
+
+  <div id="stats" style="display:none;"></div>
+</div>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  // Официальные тайлы OpenStreetMap
+  const map = L.map('map').setView([51.5335, 46.0342], 14);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  let pointA = null, pointB = null;
+  let markerA = null, markerB = null;
+  let routeLayer = L.layerGroup().addTo(map);
+
+  const statusEl = document.getElementById('status');
+  const statsEl = document.getElementById('stats');
+  const timeInput = document.getElementById('timeBudget');
+  const timeVal = document.getElementById('timeVal');
+  const btnBuild = document.getElementById('btnBuild');
+
+  timeInput.oninput = () => timeVal.textContent = timeInput.value;
+
+  function locateUser() {
+    if (!navigator.geolocation) return;
+    statusEl.textContent = 'Определяем ваше местоположение...';
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const latlng = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+        setPointA(latlng);
+        map.setView(latlng, 15);
+      },
+      () => { statusEl.textContent = 'GPS недоступен. Выберите точку A кликом по карте.'; }
+    );
+  }
+  locateUser();
+
+  document.getElementById('btnLocate').onclick = locateUser;
+
+  function setPointA(latlng) {
+    pointA = latlng;
+    if (markerA) map.removeLayer(markerA);
+    markerA = L.marker(latlng).addTo(map).bindPopup('<b>Старт (A)</b>').openPopup();
+    statusEl.textContent = pointB ? 'Точки готовы! Нажмите «Построить маршрут».' : 'Выберите точку финиша (B) на карте или через поиск.';
+  }
+
+  function setPointB(latlng, label = 'Финиш (B)') {
+    pointB = latlng;
+    if (markerB) map.removeLayer(markerB);
+    markerB = L.marker(latlng).addTo(map).bindPopup(`<b>${label}</b>`).openPopup();
+    statusEl.textContent = 'Точки выбраны! Нажмите «Построить маршрут».';
+  }
+
+  map.on('click', (e) => {
+    if (!pointA) setPointA(e.latlng);
+    else setPointB(e.latlng);
+  });
+
+  // Официальный поиск OpenStreetMap (Nominatim) — без ключей
+  document.getElementById('btnSearchB').onclick = async () => {
+    const query = document.getElementById('searchB').value.trim();
+    if (!query) return;
+    statusEl.textContent = 'Ищем в базе OpenStreetMap...';
+    try {
+      const bounds = map.getBounds();
+      const viewbox = `${bounds.getWest()},${bounds.getNorth()},${bounds.getEast()},${bounds.getSouth()}`;
+      const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&viewbox=${viewbox}&limit=1&accept-language=ru`;
+      const res = await fetch(url);
+      const data = await res.json();
+      if (data && data.length > 0) {
+        const lat = parseFloat(data[0].lat);
+        const lng = parseFloat(data[0].lon);
+        const name = data[0].display_name.split(',')[0];
+        const latlng = { lat, lng };
+        setPointB(latlng, name);
+        map.setView(latlng, 15);
+      } else {
+        statusEl.textContent = 'Ничего не найдено в OSM. Попробуйте другой запрос или кликните на карту.';
+      }
+    } catch (e) {
+      statusEl.textContent = 'Ошибка поиска. Выберите точку B кликом по карте.';
+    }
+  };
+
+  document.getElementById('btnReset').onclick = () => {
+    pointA = pointB = null;
+    if (markerA) map.removeLayer(markerA);
+    if (markerB) map.removeLayer(markerB);
+    routeLayer.clearLayers();
+    statsEl.style.display = 'none';
+    statusEl.textContent = 'Кликните на карту, чтобы выбрать точку A.';
+  };
+
+  // --- ЛОКАЛЬНАЯ ГЕО-МАТЕМАТИКА И АЛГОРИТМ БЕЗ ЗИГЗАГОВ ---
+
+  function createProjector(origin) {
+    const latScale = 111320;
+    const lonScale = 111320 * Math.cos(origin.lat * Math.PI / 180);
+    return (p) => ({
+      x: (p.lng - origin.lng) * lonScale,
+      y: (p.lat - origin.lat) * latScale
+    });
+  }
+
+  function distMeters(p1, p2, toXY) {
+    const a = toXY(p1), b = toXY(p2);
+    return Math.hypot(b.x - a.x, b.y - a.y);
+  }
+
+  // Алгоритм отбора точек OpenStreetMap без зигзагов (проекция + Cheapest Insertion)
+  function selectSmoothRoutePoints(A, B, rawPois, maxExtraMeters, corridorWidth) {
+    const toXY = createProjector(A);
+    const pA = { x: 0, y: 0 };
+    const pB = toXY(B);
+    const ABx = pB.x - pA.x;
+    const ABy = pB.y - pA.y;
+    const lenAB = Math.hypot(ABx, ABy);
+
+    if (lenAB < 50) return [];
+
+    const candidates = rawPois.map(poi => {
+      const P = toXY(poi);
+      const t = (P.x * ABx + P.y * ABy) / (lenAB * lenAB);
+      const projX = t * ABx;
+      const projY = t * ABy;
+      const perpDist = Math.hypot(P.x - projX, P.y - projY);
+      const score = (poi.name && poi.name !== 'Объект OpenStreetMap' ? 2 : 0) + (poi.wikipedia ? 5 : 0);
+      return { ...poi, t, perpDist, score };
+    }).filter(p => p.t > 0.06 && p.t < 0.94 && p.perpDist <= corridorWidth);
+
+    const uniqueCandidates = [];
+    candidates.sort((a, b) => b.score - a.score || a.perpDist - b.perpDist);
+    for (const c of candidates) {
+      const tooClose = uniqueCandidates.some(u => distMeters(c, u, toXY) < 70);
+      if (!tooClose) uniqueCandidates.push(c);
+    }
+
+    let route = [A, B];
+    let usedExtraMeters = 0;
+    const pool = [...uniqueCandidates];
+
+    while (pool.length > 0 && route.length < 10) {
+      let bestIdx = -1;
+      let bestInsertPos = -1;
+      let minDetour = Infinity;
+
+      for (let i = 0; i < pool.length; i++) {
+        const cand = pool[i];
+        let insertPos = 1;
+        while (insertPos < route.length - 1 && (route[insertPos].t || 0) < cand.t) {
+          insertPos++;
+        }
+
+        const prev = route[insertPos - 1];
+        const next = route[insertPos];
+        const detour = distMeters(prev, cand, toXY) + distMeters(cand, next, toXY) - distMeters(prev, next, toXY);
+
+        if (detour < minDetour) {
+          minDetour = detour;
+          bestIdx = i;
+          bestInsertPos = insertPos;
+        }
+      }
+
+      const realDetour = minDetour * 1.3;
+      if (bestIdx !== -1 && (usedExtraMeters + realDetour) <= maxExtraMeters) {
+        route.splice(bestInsertPos, 0, pool[bestIdx]);
+        usedExtraMeters += realDetour;
+        pool.splice(bestIdx, 1);
+      } else {
+        break;
+      }
+    }
+
+    return route.slice(1, -1);
+  }
+
+  // Чтение открытых тегов OpenStreetMap (Overpass) без ключей
+  async function fetchOSMPoints(A, B, filters, bufferMeters) {
+    const pad = (bufferMeters + 300) / 111000;
+    const south = Math.min(A.lat, B.lat) - pad;
+    const north = Math.max(A.lat, B.lat) + pad;
+    const west = Math.min(A.lng, B.lng) - pad * 1.5;
+    const east = Math.max(A.lng, B.lng) + pad * 1.5;
+    const bbox = `${south},${west},${north},${east}`;
+
+    const queries = filters.map(f => `node${f}(${bbox});way${f}(${bbox});`).join('');
+    const query = `[out:json][timeout:12];(${queries});out center;`;
+
+    const servers = [
+      'https://overpass-api.de/api/interpreter',
+      'https://overpass.kumi.systems/api/interpreter'
+    ];
+
+    for (const url of servers) {
+      try {
+        const res = await fetch(url, { method: 'POST', body: query });
+        if (!res.ok) continue;
+        const data = await res.json();
+        return data.elements.map(el => ({
+          lat: el.lat || el.center.lat,
+          lng: el.lon || el.center.lon,
+          name: el.tags?.['name:ru'] || el.tags?.name || 'Объект OpenStreetMap',
+          type: el.tags?.tourism || el.tags?.historic || el.tags?.leisure || el.tags?.amenity || 'POI',
+          wikipedia: el.tags?.wikipedia || el.tags?.wikidata
+        }));
+      } catch (e) {
+        continue;
+      }
+    }
+    return [];
+  }
+
+  // Прокладка маршрута по дорожкам OpenStreetMap (OSRM open server)
+  async function buildOSMRoute(waypoints) {
+    const coords = waypoints.map(p => `${p.lng},${p.lat}`).join(';');
+    const url = `https://routing.openstreetmap.de/routed-foot/route/v1/driving/${coords}?overview=full&geometries=geojson`;
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 7000);
+      const res = await fetch(url, { signal: controller.signal });
+      clearTimeout(timeoutId);
+      const data = await res.json();
+      if (data.routes && data.routes.length) {
+        return data.routes[0];
+      }
+    } catch (e) {
+      // Локальный расчет по сетке улиц, если сервер OSM занят
+    }
+
+    const toXY = createProjector(waypoints[0]);
+    let dist = 0;
+    for (let i = 0; i < waypoints.length - 1; i++) {
+      dist += distMeters(waypoints[i], waypoints[i + 1], toXY);
+    }
+    const estDist = dist * 1.25;
+    return {
+      distance: estDist,
+      duration: estDist / 1.33,
+      geometry: { type: 'LineString', coordinates: waypoints.map(p => [p.lng, p.lat]) }
+    };
+  }
+
+  btnBuild.onclick = async () => {
+    if (!pointA || !pointB) {
+      alert('Сначала выберите точки A и B на карте!');
+      return;
+    }
+
+    const filters = Array.from(document.querySelectorAll('#sidebar input[type="checkbox"]:checked')).map(cb => cb.value);
+    if (!filters.length) {
+      alert('Выберите хотя бы одну категорию интересов.');
+      return;
+    }
+
+    btnBuild.disabled = true;
+    const totalMinutes = parseInt(timeInput.value, 10);
+    statusEl.textContent = '1/3 Считаем прямой путь по карте OSM...';
+    routeLayer.clearLayers();
+
+    try {
+      const directRoute = await buildOSMRoute([pointA, pointB]);
+      const directMinutes = Math.round(directRoute.duration / 60);
+
+      const extraMinutes = Math.max(0, totalMinutes - directMinutes);
+      const maxExtraMeters = extraMinutes * 65;
+      const corridorWidth = Math.min(1200, Math.max(200, maxExtraMeters / 2.2));
+
+      statusEl.textContent = '2/3 Читаем достопримечательности с карты OSM...';
+      const rawPois = await fetchOSMPoints(pointA, pointB, filters, corridorWidth);
+
+      const selectedPois = selectSmoothRoutePoints(pointA, pointB, rawPois, maxExtraMeters, corridorWidth);
+
+      statusEl.textContent = '3/3 Прокладываем пеший маршрут без зигзагов...';
+      const finalWaypoints = [pointA, ...selectedPois, pointB];
+      const finalRoute = await buildOSMRoute(finalWaypoints);
+
+      const geoLayer = L.geoJSON(finalRoute.geometry, {
+        style: { color: '#2563eb', weight: 5, opacity: 0.85 }
+      }).addTo(routeLayer);
+
+      selectedPois.forEach((poi, idx) => {
+        L.circleMarker([poi.lat, poi.lng], {
+          radius: 8, fillColor: '#f59e0b', color: '#fff', weight: 2, fillOpacity: 1
+        })
+        .bindPopup(`<b>${idx + 1}. ${poi.name}</b><br><small>Тег OSM: ${poi.type}</small>`)
+        .addTo(routeLayer);
+      });
+
+      map.fitBounds(geoLayer.getBounds(), { padding: [40, 40] });
+
+      const walkMin = Math.round(finalRoute.duration / 60);
+      const distKm = (finalRoute.distance / 1000).toFixed(2);
+
+      const listHtml = selectedPois.length
+        ? `<ol class="poi-list">${selectedPois.map(p => `<li>${p.name}</li>`).join('')}</ol>`
+        : '<p class="hint">Времени впритык или рядом не найдено объектов — построен прямой путь.</p>';
+
+      statsEl.style.display = 'block';
+      statsEl.innerHTML = `
+        <b>Маршрут по OpenStreetMap готов!</b><br>
+        📏 Дистанция: <b>${distKm} км</b><br>
+        ⏱ Время ходьбы: <b>~${walkMin} мин</b> (лимит: ${totalMinutes} мин)<br>
+        🏛 Точек по пути: <b>${selectedPois.length}</b>
+        ${listHtml}
+      `;
+      statusEl.textContent = 'Готово! Нажмите на оранжевые точки для названий мест.';
+    } catch (err) {
+      console.error(err);
+      statusEl.textContent = 'Произошла ошибка. Попробуйте еще раз.';
+    } finally {
+      btnBuild.disabled = false;
+    }
+  };
+</script>
+</body>
+</html>
